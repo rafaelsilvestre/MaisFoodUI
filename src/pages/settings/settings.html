@@ -1,0 +1,44 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">Configurações</div>
+                <div class="panel-body">
+                    <form [formGroup]="settingsFormGroup">
+                        <div class="form-group">
+                            <label for="name">Nome</label>
+                            <input type="email" class="form-control" id="name" placeholder="Nome" formControlName="name">
+                        </div>
+                        <div class="form-group">
+                            <label>Descrição <small>({{ settingsFormGroup.controls['description'].value.length }}/255)</small></label>
+                            <textarea rows="3" maxlength="255" placeholder="Descrição" class="form-control" formControlName="description"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="minimumValue">Valor mínimo</label>
+                            <input type="email" class="form-control" id="minimumValue" mask [maskPatterns]="moneyMask" placeholder="Valor mínimo" formControlName="minimumValue">
+                        </div>
+                        <button type="submit" class="btn btn-success" [disabled]="!settingsFormGroup.valid" (click)="saveSettings(settingsFormGroup.value)">Salvar</button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="panel panel-default">
+                <div class="panel-heading">Horário de Funcionamento</div>
+                <div class="panel-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="">Nome</label>
+                            <input type="email" class="form-control" id="" placeholder="Nome">
+                        </div>
+                        <div class="form-group">
+                            <label>Descrição <small>(0/255)</small></label>
+                            <textarea rows="3" maxlength="255" placeholder="Descrição" class="form-control"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-success">Salvar</button>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
