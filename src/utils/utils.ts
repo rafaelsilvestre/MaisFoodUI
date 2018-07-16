@@ -23,6 +23,16 @@ export default class Utils {
     }
 
     /**
+     * Generates phone mask to use in forms.
+     * @returns (rawData:any)
+     */
+    public static getHourMask() {
+        return function (rawData) {
+            return [/\d/, /\d/, ':', /\d/, /\d/];
+        };
+    }
+
+    /**
      * Generates money mask to use in forms.
      * @returns {(rawData:any)=>Array<any>}
      */
