@@ -12,6 +12,7 @@ import { NavBarComponent } from '../components/nav-bar/nav-bar';
 import { DashboardPage } from '../pages/dashboard/dashboard';
 import { SettingsPage } from '../pages/settings/settings';
 import { LoginPage } from '../pages/login/login';
+import { UsersPage } from '../pages/users/users';
 
 import { InputMaskDirective } from '../directives/input-mask/input-mask';
 
@@ -26,6 +27,7 @@ import { InputMaskDirective } from '../directives/input-mask/input-mask';
         LoginPage,
         DashboardPage,
         SettingsPage,
+        UsersPage,
         // directives
         InputMaskDirective
     ],
