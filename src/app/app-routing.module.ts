@@ -8,11 +8,15 @@ import { SettingsPage } from '../pages/settings/settings';
 import { UsersPage } from '../pages/users/users';
 
 const appRoutes: Routes = [
-    { path: '', redirectTo: '/dashboard', pathMatch: 'full'},
-    { path: 'dashboard', component: DashboardPage },
-    { path: 'login', component: LoginPage },
-    { path: 'settings', component: SettingsPage },
-    { path: 'users', component: UsersPage}
+    // admin pages
+    { path: 'admin', redirectTo: 'admin/dashboard', pathMatch: 'full' },
+    { path: 'admin/login', component: DashboardPage },
+    { path: 'admin/dashboard', component: DashboardPage },
+    { path: 'admin/login', component: LoginPage },
+    { path: 'admin/settings', component: SettingsPage },
+    { path: 'admin/users', component: UsersPage}
+
+    // client pages
 ];
 
 @NgModule({

@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule }   from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -15,6 +16,8 @@ import { LoginPage } from '../pages/login/login';
 import { UsersPage } from '../pages/users/users';
 
 import { InputMaskDirective } from '../directives/input-mask/input-mask';
+
+import { UserServiceProvider } from '../providers/services/user-service';
 
 @NgModule({
     declarations: [
@@ -35,9 +38,12 @@ import { InputMaskDirective } from '../directives/input-mask/input-mask';
         BrowserModule,
         AppRoutingModule,
         FormsModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        HttpClientModule
     ],
-    providers: [],
+    providers: [
+        UserServiceProvider
+    ],
     bootstrap: [AppComponent]
 })
 export class AppModule { }

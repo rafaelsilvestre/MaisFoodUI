@@ -1,9 +1,7 @@
 export default class Utils {
 
-    public static ENDPOINT_BASE_URL = "https://api.stayapp.com.br";
-    public static ENDPOINT_BASE_INTEGRATION_URL = Utils.ENDPOINT_BASE_URL + "/integration";
-    public static ENDPOINT_GET_ALL_TICKETS = Utils.ENDPOINT_BASE_INTEGRATION_URL + "/tickets";
-    public static ENDPOINT_ADD_STAMP = Utils.ENDPOINT_BASE_INTEGRATION_URL + "/addStamp";
+    public static END_POINT_BASE_URL = "http://localhost:8080";
+    public static END_POINT_USERS = Utils.END_POINT_BASE_URL + "/user";
 
     /**
      * Generates phone mask to use in forms.

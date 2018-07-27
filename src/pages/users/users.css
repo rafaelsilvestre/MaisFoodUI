@@ -90,6 +90,7 @@ table.table .avatar {
     border-radius: 50%;
     vertical-align: middle;
     margin-right: 10px;
+    max-width: 40px;
 }
 .status {
     font-size: 30px;
