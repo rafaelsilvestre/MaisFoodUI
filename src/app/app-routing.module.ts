@@ -7,16 +7,14 @@ import { DashboardPage } from '../pages/dashboard/dashboard';
 import { SettingsPage } from '../pages/settings/settings';
 import { UsersPage } from '../pages/users/users';
 
-const appRoutes: Routes = [
-    // admin pages
-    { path: 'admin', redirectTo: 'admin/dashboard', pathMatch: 'full' },
-    { path: 'admin/login', component: DashboardPage },
-    { path: 'admin/dashboard', component: DashboardPage },
-    { path: 'admin/login', component: LoginPage },
-    { path: 'admin/settings', component: SettingsPage },
-    { path: 'admin/users', component: UsersPage}
+import { AuthGuard } from '../providers/guards/auth-guard';
 
-    // client pages
+const appRoutes: Routes = [
+    { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+    { path: 'login', component: LoginPage },
+    { path: 'dashboard', component: DashboardPage, canActivate: [AuthGuard] },
+    { path: 'settings', component: SettingsPage, canActivate: [AuthGuard] },
+    { path: 'users', component: UsersPage, canActivate: [AuthGuard]}
 ];
 
 @NgModule({

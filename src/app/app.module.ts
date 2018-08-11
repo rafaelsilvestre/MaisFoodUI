@@ -18,20 +18,23 @@ import { UsersPage } from '../pages/users/users';
 import { InputMaskDirective } from '../directives/input-mask/input-mask';
 
 import { UserServiceProvider } from '../providers/services/user-service';
+import { AuthServiceProvider } from '../providers/services/auth-service';
+
+import { AuthGuard } from '../providers/guards/auth-guard';
 
 @NgModule({
     declarations: [
-        // components
+        // Components
         AppComponent,
         LoggedInTemplateComponent,
         LoggedOutTemplateComponent,
         NavBarComponent,
-        // pages
+        // Pages
         LoginPage,
         DashboardPage,
         SettingsPage,
         UsersPage,
-        // directives
+        // Directives
         InputMaskDirective
     ],
     imports: [
@@ -42,7 +45,11 @@ import { UserServiceProvider } from '../providers/services/user-service';
         HttpClientModule
     ],
     providers: [
-        UserServiceProvider
+        // Guards
+        AuthGuard,
+        // Services Providers
+        UserServiceProvider,
+        AuthServiceProvider
     ],
     bootstrap: [AppComponent]
 })

@@ -3,6 +3,10 @@
     padding-left: 15px !important;
 }
 
+.navbar-nav {
+    margin: 0 -15px !important;
+}
+
 .navbar .profile-img{
     margin-top: -5px;
     margin-right: 5px;

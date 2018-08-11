@@ -2,6 +2,7 @@ export default class Utils {
 
     public static END_POINT_BASE_URL = "http://localhost:8080";
     public static END_POINT_USERS = Utils.END_POINT_BASE_URL + "/user";
+    public static END_POINT_AUTH_USER = Utils.END_POINT_BASE_URL + "/auth";
 
     /**
      * Generates phone mask to use in forms.

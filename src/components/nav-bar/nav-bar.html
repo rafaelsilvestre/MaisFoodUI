@@ -12,11 +12,10 @@
 
         <div class="collapse navbar-collapse" id="navbar-collapse">
             <ul class="nav navbar-nav navbar-right">
-                <li [routerLink]="['/admin/dashboard']" routerLinkActive="active"><a href="javascript:void(0);">Dashboard</a></li>
+                <li [routerLink]="['/dashboard']" routerLinkActive="active"><a href="javascript:void(0);">Dashboard</a></li>
                 <li><a href="javascript:void(0);">Meus Pedidos</a></li>
                 <li><a href="javascript:void(0);">Produtos</a></li>
-                <li [routerLink]="['/admin/users']" routerLinkActive="active"><a href="javascript:void(0);">Usuários</a></li>
-                <li [routerLink]="['/admin/settings']" routerLinkActive="active"><a href="javascript:void(0);">Configurações</a></li>
+                <li [routerLink]="['/settings']" routerLinkActive="active"><a href="javascript:void(0);">Configurações</a></li>
                 <li class="dropdown">
                     <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true" style="background-color: #9b3b42;color: #FFF;font-size: 16px;">
                         <i class="glyphicon glyphicon-flash"></i>
@@ -24,6 +23,7 @@
                     <ul class="dropdown-menu">
                         <li><a href="javascript:void(0);">Filtros</a></li>
                         <li><a href="javascript:void(0);">Estabelecimentos</a></li>
+                        <li [routerLink]="['/users']" routerLinkActive="active"><a href="javascript:void(0);">Usuários</a></li>
                     </ul>
                 </li>
                 <li class="dropdown">
