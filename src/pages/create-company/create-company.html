@@ -4,39 +4,20 @@
             <div class="panel panel-default">
                 <div class="panel-heading"><h2 style="margin: 5px 0 0;font-size: 24px;">Informações básicas</h2></div>
                 <div class="panel-body">
-                    <form>
+                    <form [formGroup]="formGroup">
                         <div class="form-group">
                             <label for="name">Nome</label>
-                            <input type="email" class="form-control" id="name" placeholder="Nome">
+                            <input type="email" class="form-control" id="name" formControlName="name" placeholder="Nome">
                         </div>
                         <div class="form-group">
                             <label>Descrição <small>(0/255)</small></label>
-                            <textarea rows="3" maxlength="255" placeholder="Descrição" class="form-control"></textarea>
+                            <textarea rows="3" maxlength="255" placeholder="Descrição" class="form-control" formControlName="description"></textarea>
                         </div>
                         <div class="form-group">
                             <label for="minimumValue">Valor mínimo</label>
-                            <input type="email" class="form-control" id="minimumValue" placeholder="Valor mínimo">
+                            <input type="email" class="form-control" id="minimumValue" mask [maskPatterns]="moneyMask" formControlName="minimum_value" placeholder="Valor mínimo">
                         </div>
-                    </form>
-                </div>
-            </div>
-
-            <div class="panel panel-default">
-                <div class="panel-heading"><h2 style="margin: 5px 0 0;font-size: 24px;">Endereço</h2></div>
-                <div class="panel-body">
-                    <form>
-                        <div class="form-group">
-                            <label for="name">Nome</label>
-                            <input type="email" class="form-control" id="name" placeholder="Nome">
-                        </div>
-                        <div class="form-group">
-                            <label>Descrição <small>(0/255)</small></label>
-                            <textarea rows="3" maxlength="255" placeholder="Descrição" class="form-control"></textarea>
-                        </div>
-                        <div class="form-group">
-                            <label for="minimumValue">Valor mínimo</label>
-                            <input type="email" class="form-control" id="minimumValue" placeholder="Valor mínimo">
-                        </div>
+                        <button type="submit" class="btn btn-success" [disabled]="!formGroup.valid" (click)="saveCompany(formGroup.value)">Salvar</button>
                     </form>
                 </div>
             </div>

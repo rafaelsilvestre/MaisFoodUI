@@ -25,4 +25,22 @@ export class CompanyServiceProvider{
         });
     }
 
+    saveCompany(formData: any): Promise<any>{
+        let data = {
+            name: formData.name,
+            description: formData.description,
+            minimumValue: Number(formData.minimum_value),
+            image: 'image.jpg'
+        };
+
+        return new Promise((resolve, reject) => {
+            let companiesPath = Utils.END_POINT_COMPANIES;
+            this.http.post(companiesPath, data).subscribe((result) => {
+                resolve(result);
+            }, (error) => {
+                reject(error);
+            })
+        });
+    }
+
 }
