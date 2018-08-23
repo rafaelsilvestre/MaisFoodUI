@@ -1,0 +1,49 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="table-wrapper">
+                <div class="table-title">
+                    <div class="row">
+                        <div class="col-sm-5">
+                            <h2>Estabelecimentos</h2>
+                        </div>
+                        <div class="col-sm-7">
+                            <a href="javascript:void(0);" class="btn btn-primary" [routerLink]="['/companies/create']"><i class="glyphicon glyphicon-plus-sign"></i> <span>Novo Estabelecimento</span></a>
+                            <a href="javascript:void(0);" class="btn btn-primary"><i class="glyphicon glyphicon-file"></i> <span>Exportar</span></a>
+                        </div>
+                    </div>
+                </div>
+                <table class="table table-striped table-hover">
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Nome</th>
+                        <th>Descrição</th>
+                        <th>Valor Mínimo</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr *ngFor="let company of companies">
+                        <td>{{ company.id }}</td>
+                        <td>
+                            <a href="#">
+                                <img [src]="company?.image" class="avatar" alt="Avatar">
+                                {{ company?.name }}
+                            </a>
+                        </td>
+                        <td>Lorem ipsum dolor sit amet, consectetur...</td>
+                        <td>{{ company?.minimumValue | money }}</td>
+                        <td><span class="status text-success">&bull;</span> Ativo</td>
+                        <td>
+                            <a href="#" class="settings" title="Settings" data-toggle="tooltip"><i class="glyphicon glyphicon-cog"></i></a>
+                            <a href="#" class="delete" title="Delete" data-toggle="tooltip"><i class="glyphicon glyphicon-trash"></i></a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,7 +1,14 @@
 export default class Utils {
 
     public static END_POINT_BASE_URL = "http://localhost:8080";
+
+    // USERS
     public static END_POINT_USERS = Utils.END_POINT_BASE_URL + "/user";
+
+    // COMPANIES
+    public static END_POINT_COMPANIES = Utils.END_POINT_BASE_URL + "/company";
+
+    // AUTH
     public static END_POINT_AUTH_USER = Utils.END_POINT_BASE_URL + "/auth";
 
     /**

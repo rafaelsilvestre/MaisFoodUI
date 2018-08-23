@@ -14,11 +14,16 @@ import { DashboardPage } from '../pages/dashboard/dashboard';
 import { SettingsPage } from '../pages/settings/settings';
 import { LoginPage } from '../pages/login/login';
 import { UsersPage } from '../pages/users/users';
+import { CompaniesPage } from '../pages/companies/companies';
+import { CreateCompanyPage } from '../pages/create-company/create-company';
 
 import { InputMaskDirective } from '../directives/input-mask/input-mask';
 
+import { MoneyPipe } from '../pipes/money-mask/money-mask';
+
 import { UserServiceProvider } from '../providers/services/user-service';
 import { AuthServiceProvider } from '../providers/services/auth-service';
+import { CompanyServiceProvider } from '../providers/services/company-service';
 
 import { AuthGuard } from '../providers/guards/auth-guard';
 
@@ -34,8 +39,12 @@ import { AuthGuard } from '../providers/guards/auth-guard';
         DashboardPage,
         SettingsPage,
         UsersPage,
+        CompaniesPage,
+        CreateCompanyPage,
         // Directives
-        InputMaskDirective
+        InputMaskDirective,
+        // Pipes
+        MoneyPipe
     ],
     imports: [
         BrowserModule,
@@ -49,7 +58,8 @@ import { AuthGuard } from '../providers/guards/auth-guard';
         AuthGuard,
         // Services Providers
         UserServiceProvider,
-        AuthServiceProvider
+        AuthServiceProvider,
+        CompanyServiceProvider
     ],
     bootstrap: [AppComponent]
 })
