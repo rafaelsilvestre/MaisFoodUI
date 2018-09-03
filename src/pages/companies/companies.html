@@ -25,22 +25,25 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr *ngFor="let company of companies">
-                        <td>{{ company.id }}</td>
-                        <td>
-                            <a href="#">
-                                <img [src]="company?.image" class="avatar" alt="Avatar">
-                                {{ company?.name }}
-                            </a>
-                        </td>
-                        <td>Lorem ipsum dolor sit amet, consectetur...</td>
-                        <td>{{ company?.minimumValue | money }}</td>
-                        <td><span class="status text-success">&bull;</span> Ativo</td>
-                        <td>
-                            <a href="#" class="settings" title="Settings" data-toggle="tooltip"><i class="glyphicon glyphicon-cog"></i></a>
-                            <a href="#" class="delete" title="Delete" data-toggle="tooltip"><i class="glyphicon glyphicon-trash"></i></a>
-                        </td>
-                    </tr>
+                        <tr *ngFor="let company of companies">
+                            <td>{{ company.id }}</td>
+                            <td>
+                                <a href="#">
+                                    <img [src]="company?.image" class="avatar" alt="Avatar">
+                                    {{ company?.name }}
+                                </a>
+                            </td>
+                            <td>Lorem ipsum dolor sit amet, consectetur...</td>
+                            <td>{{ company?.minimumValue | money }}</td>
+                            <td><span class="status text-success">&bull;</span> Ativo</td>
+                            <td>
+                                <a href="#" class="settings" title="Settings" data-toggle="tooltip"><i class="glyphicon glyphicon-cog"></i></a>
+                                <a href="#" class="delete" title="Delete" data-toggle="tooltip"><i class="glyphicon glyphicon-trash"></i></a>
+                            </td>
+                        </tr>
+                        <tr *ngIf="companies.length == 0">
+                            <td colspan="6" align="center">Nenhuma empresa encontrada!</td>
+                        </tr>
                     </tbody>
                 </table>
             </div>

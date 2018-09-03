@@ -9,7 +9,7 @@ export default class Utils {
     public static END_POINT_COMPANIES = Utils.END_POINT_BASE_URL + "/company";
 
     // AUTH
-    public static END_POINT_AUTH_USER = Utils.END_POINT_BASE_URL + "/auth";
+    public static END_POINT_AUTH_USER = Utils.END_POINT_BASE_URL + "/login";
 
     /**
      * Generates phone mask to use in forms.

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { AuthServiceProvider } from '../../providers/services/auth-service';
+import { Router } from '@angular/router';
 import { emailValidator } from '../../validators/validators';
 import * as md5 from 'md5';
 
@@ -18,11 +19,10 @@ export class LoggedOutTemplateComponent {
     formGroup: FormGroup;
     userProfile: UserProfile = {name: null, gravatar: "https://ssl.gstatic.com/accounts/ui/avatar_2x.png"};
 
-    constructor(private formBuilder: FormBuilder, private authService: AuthServiceProvider){
+    constructor(private formBuilder: FormBuilder, private authService: AuthServiceProvider, private router: Router){
         this.formGroup = this.formBuilder.group({
             email: ["", [Validators.required, emailValidator()]],
-            password: ["", [Validators.required]],
-            remember: [false, [Validators.required]]
+            password: ["", [Validators.required]]
         });
     }
 
@@ -34,7 +34,7 @@ export class LoggedOutTemplateComponent {
         this.authService.authUser(data).then((results) => {
             this.userProfile.name = "Rafael Silvestre";
             this.userProfile.gravatar = this.getUserGravatar(data.email);
-            console.log(results);
+            this.router.navigate(['/dashboard']);
         }).catch((error) => {
             console.log(error);
         });

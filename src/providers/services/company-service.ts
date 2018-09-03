@@ -30,7 +30,7 @@ export class CompanyServiceProvider{
             name: formData.name,
             description: formData.description,
             minimumValue: Number(formData.minimum_value),
-            image: 'image.jpg'
+            image: 'https://3.kekantoimg.com/qBML1ugEVRfkSgoK4DJ5p-HanPI=/300x300/s3.amazonaws.com/kekanto_pics/pics/211/857211.jpg'
         };
 
         return new Promise((resolve, reject) => {

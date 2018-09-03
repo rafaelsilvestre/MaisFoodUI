@@ -24,6 +24,7 @@ import { MoneyPipe } from '../pipes/money-mask/money-mask';
 import { UserServiceProvider } from '../providers/services/user-service';
 import { AuthServiceProvider } from '../providers/services/auth-service';
 import { CompanyServiceProvider } from '../providers/services/company-service';
+import { AuthInterceptorProvider } from '../providers/interceptors/auth-interceptor';
 
 import { AuthGuard } from '../providers/guards/auth-guard';
 
@@ -59,7 +60,8 @@ import { AuthGuard } from '../providers/guards/auth-guard';
         // Services Providers
         UserServiceProvider,
         AuthServiceProvider,
-        CompanyServiceProvider
+        CompanyServiceProvider,
+        AuthInterceptorProvider
     ],
     bootstrap: [AppComponent]
 })
