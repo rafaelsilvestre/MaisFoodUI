@@ -26,6 +26,7 @@
         "material-icons": "^0.2.3",
         "md5": "^2.2.1",
         "rxjs": "^6.0.0",
+        "sweetalert2": "^7.26.28",
         "zone.js": "^0.8.26"
     },
     "devDependencies": {

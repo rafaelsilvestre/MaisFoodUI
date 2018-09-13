@@ -16,6 +16,7 @@ import { LoginPage } from '../pages/login/login';
 import { UsersPage } from '../pages/users/users';
 import { CompaniesPage } from '../pages/companies/companies';
 import { CreateCompanyPage } from '../pages/create-company/create-company';
+import { CompanyPage } from '../pages/company/company';
 
 import { InputMaskDirective } from '../directives/input-mask/input-mask';
 
@@ -42,6 +43,7 @@ import { AuthGuard } from '../providers/guards/auth-guard';
         UsersPage,
         CompaniesPage,
         CreateCompanyPage,
+        CompanyPage,
         // Directives
         InputMaskDirective,
         // Pipes

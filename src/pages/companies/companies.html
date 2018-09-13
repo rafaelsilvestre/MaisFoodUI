@@ -25,10 +25,10 @@
                     </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let company of companies">
+                        <tr *ngFor="let company of companies; let i = index">
                             <td>{{ company.id }}</td>
                             <td>
-                                <a href="#">
+                                <a href="javascript:void(0);" [routerLink]="['/company', company.id]">
                                     <img [src]="company?.image" class="avatar" alt="Avatar">
                                     {{ company?.name }}
                                 </a>
@@ -37,8 +37,8 @@
                             <td>{{ company?.minimumValue | money }}</td>
                             <td><span class="status text-success">&bull;</span> Ativo</td>
                             <td>
-                                <a href="#" class="settings" title="Settings" data-toggle="tooltip"><i class="glyphicon glyphicon-cog"></i></a>
-                                <a href="#" class="delete" title="Delete" data-toggle="tooltip"><i class="glyphicon glyphicon-trash"></i></a>
+                                <a href="javascript:void(0);" class="settings" (click)="editCompany(company.id, i)" title="Editar" data-toggle="tooltip"><i class="glyphicon glyphicon-cog"></i></a>
+                                <a href="javascript:void(0);" class="delete" (click)="deleteCompany(company.id, i)" title="Apagar" data-toggle="tooltip"><i class="glyphicon glyphicon-trash"></i></a>
                             </td>
                         </tr>
                         <tr *ngIf="companies.length == 0">

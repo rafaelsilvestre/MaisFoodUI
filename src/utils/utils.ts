@@ -7,6 +7,7 @@ export default class Utils {
 
     // COMPANIES
     public static END_POINT_COMPANIES = Utils.END_POINT_BASE_URL + "/company";
+    public static END_POINT_COMPANY = Utils.END_POINT_COMPANIES + "/%s";
 
     // AUTH
     public static END_POINT_AUTH_USER = Utils.END_POINT_BASE_URL + "/login";

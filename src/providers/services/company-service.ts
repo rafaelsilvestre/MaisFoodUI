@@ -43,4 +43,15 @@ export class CompanyServiceProvider{
         });
     }
 
+    deleteCompany(companyId: number): Promise<any>{
+        return new Promise((resolve, reject) => {
+            let companiesPath = sprintf(Utils.END_POINT_COMPANY, companyId);
+            this.http.delete(companiesPath).subscribe((result) => {
+                resolve(result);
+            }, (error) => {
+                reject(error);
+            });
+        });
+    }
+
 }
