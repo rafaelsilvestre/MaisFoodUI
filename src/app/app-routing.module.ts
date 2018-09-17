@@ -9,6 +9,7 @@ import { UsersPage } from '../pages/users/users';
 import { CompaniesPage } from '../pages/companies/companies';
 import { CreateCompanyPage } from '../pages/create-company/create-company';
 import { CompanyPage } from '../pages/company/company';
+import { ProductsPage } from '../pages/products/products';
 
 import { AuthGuard } from '../providers/guards/auth-guard';
 
@@ -17,11 +18,17 @@ const appRoutes: Routes = [
     { path: 'login', component: LoginPage },
     { path: 'dashboard', component: DashboardPage, canActivate: [AuthGuard] },
     { path: 'settings', component: SettingsPage, canActivate: [AuthGuard] },
+
+    // USERS
     { path: 'users', component: UsersPage, canActivate: [AuthGuard] },
-    { path: 'companies', component: CompaniesPage, canActivate: [AuthGuard] },
+
     // COMPANIES
+    { path: 'companies', component: CompaniesPage, canActivate: [AuthGuard] },
     { path: 'companies/create', component: CreateCompanyPage, canActivate: [AuthGuard] },
-    { path: 'company/:id', component: CompanyPage, canActivate: [AuthGuard] }
+    { path: 'company/:id', component: CompanyPage, canActivate: [AuthGuard] },
+
+    // PRODUCTS
+    { path: 'products', component: ProductsPage, canActivate: [AuthGuard] }
 ];
 
 @NgModule({
