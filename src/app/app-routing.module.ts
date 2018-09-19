@@ -10,12 +10,16 @@ import { CompaniesPage } from '../pages/companies/companies';
 import { CreateCompanyPage } from '../pages/create-company/create-company';
 import { CompanyPage } from '../pages/company/company';
 import { ProductsPage } from '../pages/products/products';
+import { FiltersPage } from '../pages/filters/filters';
+import { CreateFilterPage } from '../pages/create-filter/create-filter';
 
 import { AuthGuard } from '../providers/guards/auth-guard';
 
 const appRoutes: Routes = [
     { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
     { path: 'login', component: LoginPage },
+
+    // Main
     { path: 'dashboard', component: DashboardPage, canActivate: [AuthGuard] },
     { path: 'settings', component: SettingsPage, canActivate: [AuthGuard] },
 
@@ -28,7 +32,11 @@ const appRoutes: Routes = [
     { path: 'company/:id', component: CompanyPage, canActivate: [AuthGuard] },
 
     // PRODUCTS
-    { path: 'products', component: ProductsPage, canActivate: [AuthGuard] }
+    { path: 'products', component: ProductsPage, canActivate: [AuthGuard] },
+
+    // FILTERS
+    { path: 'filters', component: FiltersPage, canActivate: [AuthGuard] },
+    { path: 'filters/create', component: CreateFilterPage, canActivate: [AuthGuard] }
 ];
 
 @NgModule({

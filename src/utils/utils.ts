@@ -5,6 +5,10 @@ export default class Utils {
     // USERS
     public static END_POINT_USERS = Utils.END_POINT_BASE_URL + "/user";
 
+    // FILTERS
+    public static END_POINT_FILTERS = Utils.END_POINT_BASE_URL + "/filter";
+    public static END_POINT_FILTER = Utils.END_POINT_FILTERS + "/%s";
+
     // COMPANIES
     public static END_POINT_COMPANIES = Utils.END_POINT_BASE_URL + "/company";
     public static END_POINT_COMPANY = Utils.END_POINT_COMPANIES + "/%s";

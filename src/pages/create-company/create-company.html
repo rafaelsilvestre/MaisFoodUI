@@ -2,21 +2,60 @@
     <div class="row">
         <div class="col-md-12">
             <div class="panel panel-default">
-                <div class="panel-heading"><h2 style="margin: 5px 0 0;font-size: 24px;">Informações básicas</h2></div>
+                <div class="panel-title">
+                    <div class="row">
+                        <div class="col-sm-5">
+                            <h2>Informações básicas</h2>
+                        </div>
+                        <div class="col-sm-7"></div>
+                    </div>
+                </div>
                 <div class="panel-body">
                     <form [formGroup]="formGroup">
-                        <div class="form-group">
-                            <label for="name">Nome</label>
-                            <input type="email" class="form-control" id="name" formControlName="name" placeholder="Nome">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h2 class="section-separator">Dados da empresa</h2>
+                                <div class="form-group">
+                                    <label for="name">Nome da empresa</label>
+                                    <input type="email" class="form-control" id="name" formControlName="name" placeholder="Nome">
+                                </div>
+                                <div class="form-group">
+                                    <label>Descrição <small>(0/255)</small></label>
+                                    <textarea rows="3" maxlength="255" placeholder="Descrição" class="form-control" formControlName="description"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="minimumValue">Valor mínimo</label>
+                                    <input type="email" class="form-control" id="minimumValue" mask [maskPatterns]="moneyMask" formControlName="minimum_value" placeholder="Valor mínimo">
+                                </div>
+                                <div class="form-group">
+                                    <label for="filter">Filtro</label>
+                                    <select id="filter" class="form-control" formControlName="filter">
+                                        <option value="">Selecione uma opção</option>
+                                        <option [attr.value]="filter.id" *ngFor="let filter of filters;">{{ filter?.name }}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <h2 class="section-separator">Dados de acesso</h2>
+                                <div class="form-group">
+                                    <label for="name">Nome do usuário</label>
+                                    <input type="email" class="form-control" id="name_owner" formControlName="name_owner" placeholder="Nome">
+                                </div>
+                                <div class="form-group">
+                                    <label for="name">Sobrenome</label>
+                                    <input type="email" class="form-control" id="lastname_owner" formControlName="lastname_owner" placeholder="Sobrenome">
+                                </div>
+                                <div class="form-group">
+                                    <label for="name">E-mail</label>
+                                    <input type="email" class="form-control" id="email" formControlName="email" placeholder="E-mail">
+                                </div>
+                                <div class="form-group">
+                                    <label for="name">Senha</label>
+                                    <input type="password" class="form-control" id="password" formControlName="password" placeholder="Senha">
+                                </div>
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label>Descrição <small>(0/255)</small></label>
-                            <textarea rows="3" maxlength="255" placeholder="Descrição" class="form-control" formControlName="description"></textarea>
-                        </div>
-                        <div class="form-group">
-                            <label for="minimumValue">Valor mínimo</label>
-                            <input type="email" class="form-control" id="minimumValue" mask [maskPatterns]="moneyMask" formControlName="minimum_value" placeholder="Valor mínimo">
-                        </div>
+
                         <button type="submit" class="btn btn-success" [disabled]="!formGroup.valid" (click)="saveCompany(formGroup.value)">Salvar</button>
                     </form>
                 </div>

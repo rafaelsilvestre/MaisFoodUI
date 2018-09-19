@@ -18,6 +18,8 @@ import { CompaniesPage } from '../pages/companies/companies';
 import { CreateCompanyPage } from '../pages/create-company/create-company';
 import { CompanyPage } from '../pages/company/company';
 import { ProductsPage } from '../pages/products/products';
+import { FiltersPage } from '../pages/filters/filters';
+import { CreateFilterPage } from '../pages/create-filter/create-filter';
 
 import { InputMaskDirective } from '../directives/input-mask/input-mask';
 
@@ -26,6 +28,7 @@ import { MoneyPipe } from '../pipes/money-mask/money-mask';
 import { UserServiceProvider } from '../providers/services/user-service';
 import { AuthServiceProvider } from '../providers/services/auth-service';
 import { CompanyServiceProvider } from '../providers/services/company-service';
+import { FilterServiceProvider } from '../providers/services/filter-service';
 import { AuthInterceptorProvider } from '../providers/interceptors/auth-interceptor';
 
 import { AuthGuard } from '../providers/guards/auth-guard';
@@ -46,6 +49,8 @@ import { AuthGuard } from '../providers/guards/auth-guard';
         CreateCompanyPage,
         CompanyPage,
         ProductsPage,
+        FiltersPage,
+        CreateFilterPage,
         // Directives
         InputMaskDirective,
         // Pipes
@@ -65,7 +70,8 @@ import { AuthGuard } from '../providers/guards/auth-guard';
         UserServiceProvider,
         AuthServiceProvider,
         CompanyServiceProvider,
-        AuthInterceptorProvider
+        AuthInterceptorProvider,
+        FilterServiceProvider
     ],
     bootstrap: [AppComponent]
 })
