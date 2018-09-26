@@ -14,7 +14,9 @@ import Utils from '../../utils/utils';
 export class CreateCompanyPage {
     formGroup: FormGroup;
     moneyMask: any = Utils.getMoneyMask();
+
     filters: Array<Filter> = [];
+    filtersChecked: Array<number> = [];
     filterPrimaryColumn: Array<Filter> = [];
     filterSecondColumn: Array<Filter> = [];
 
@@ -25,7 +27,6 @@ export class CreateCompanyPage {
             name: ['', [Validators.required]],
             description: ['', Validators.required],
             minimum_value: ['', [Validators.required]],
-            filters: [],
             // owner
             name_owner: ['', [Validators.required]],
             lastname_owner: ['', [Validators.required]],
@@ -42,19 +43,11 @@ export class CreateCompanyPage {
                     this.filterSecondColumn.push(filters[i]);
                 }
             });
-
-            const controls = filters.map(c => {
-                let field = new FormControl(false);
-                field.setValue(c.id);
-                return field;
-            });
-            this.formGroup.controls['filters'] = new FormArray(controls);
         }).catch((error) => {
             if(error && error.error && error.error.message){
                 console.info("Error", error.error.message);
             }
         });
-        console.log(this.formGroup);
     }
 
     ngAfterViewInit(): void {
@@ -63,30 +56,21 @@ export class CreateCompanyPage {
 
     inflateViewInit() {}
 
-    buildFilters() {
-        const arr = this.filters.map(skill => {
-            return this.formBuilder.control(true, [Validators.required]);
-        });
-        console.log("arr", arr);
-        return this.formBuilder.array(arr);
-    }
-
     saveCompany(formData: any): void {
-        console.log("Filters", this.filters);
-        const selectedFiltersIds = formData.filters.map((v, i) => {
-            console.log("v", v);
-            return v ? this.filters[i].id : null;
-        });
-        console.log("FormData", selectedFiltersIds);return;
-        // formData.minimum_value = formData.minimum_value.replace('R$ ', '').replace(',', '.');
-        //
+        formData.minimum_value = formData.minimum_value.replace('R$ ', '').replace(',', '.');
+
+        // formData.filters = this.filtersChecked;
         // this.companyService.saveCompany(formData).then((result) => {
         //     this.router.navigate(['/companies']);
         // }).catch((error) => console.log("Error", error));
     }
 
-    checkedFilter(filter: Filter, e): void {
-        console.log(e.target.checked);
-        console.log(filter);
+    checkedFilter(filter: Filter, isChecked: boolean): void {
+        let i = this.filtersChecked.map(function(e) { return e }).indexOf(filter.id);
+
+        if(isChecked)
+            this.filtersChecked.push(filter.id);
+        else
+            this.filtersChecked.splice(i, 1);
     }
 }

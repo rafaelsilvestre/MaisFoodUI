@@ -33,7 +33,7 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="checkbox" *ngFor="let filter of filterPrimaryColumn; let i = index">
-                                                <input type="checkbox" [attr.id]="filter.id" name="filters[]" [attr.value]="filter.name" (change)="checkedFilter(filter, $event)">
+                                                <input type="checkbox" [attr.id]="filter.id" name="filters[]" [attr.value]="filter.name" (change)="checkedFilter(filter, $event.target.checked)">
                                                 <label class="glyphicon glyphicon-ok" [attr.for]="filter.id">
                                                     <p>{{ filter?.name }}</p>
                                                 </label>
@@ -42,7 +42,7 @@
 
                                         <div class="col-md-6">
                                             <div class="checkbox" *ngFor="let filter of filterSecondColumn; let i = index">
-                                                <input type="checkbox" [attr.id]="filter.id" name="filters[]" [attr.value]="filter.name">
+                                                <input type="checkbox" [attr.id]="filter.id" name="filters[]" [attr.value]="filter.name" (change)="checkedFilter(filter, $event.target.checked)">
                                                 <label class="glyphicon glyphicon-ok" [attr.for]="filter.id">
                                                     <p>{{ filter?.name }}</p>
                                                 </label>
@@ -71,8 +71,7 @@
                                 </div>
                             </div>
                         </div>
-
-                        <button type="submit" class="btn btn-success" [disabled]="!formGroup.valid" (click)="saveCompany(formGroup.value)">Salvar</button>
+                        <button type="submit" class="btn btn-success" [disabled]="!formGroup.valid || filtersChecked.length == 0" (click)="saveCompany(formGroup.value)">Salvar</button>
                     </form>
                 </div>
             </div>
