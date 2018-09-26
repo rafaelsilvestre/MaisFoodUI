@@ -16,7 +16,11 @@ export class CompaniesPage {
     constructor(private companyService: CompanyServiceProvider){
         this.companyService.getAllCompanies().then((companies) => {
             this.companies = companies;
-        }).catch((error) => console.log("Error"));
+        }).catch((error) => {
+            if(error && error.error && error.error.message){
+                console.info("Error", error.error.message);
+            }
+        });
     }
 
     editCompany(): void{

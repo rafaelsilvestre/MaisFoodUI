@@ -17,3 +17,43 @@
     font-weight: normal;
     font-style: normal;
 }
+
+
+.checkbox input[type=checkbox] {
+    display: none;
+}
+
+.checkbox label{
+    padding-left: 0;
+}
+
+.checkbox label p{
+    display: inline-block;
+    position: relative;
+    top: 6px;
+    font-family: 'OpenSans-Regular';
+}
+
+
+.checkbox input[type=checkbox] + label:before {
+    content: "";
+    width: 22px;
+    height: 22px;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-right: 6px;
+    font-size: 20px;
+    line-height: 19px;
+    vertical-align: bottom;
+    text-align: center;
+    background-color: #fff;
+    cursor: pointer;
+}
+
+
+.checkbox input[type=checkbox]:checked + label:before {
+    content: "\e013";
+    color: #3c3c41;
+    font-size: 16px;
+}

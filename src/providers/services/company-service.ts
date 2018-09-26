@@ -27,10 +27,17 @@ export class CompanyServiceProvider{
 
     saveCompany(formData: any): Promise<any>{
         let data = {
-            name: formData.name,
+            // Company data
+            companyName: formData.name,
             description: formData.description,
             minimumValue: Number(formData.minimum_value),
-            image: 'https://3.kekantoimg.com/qBML1ugEVRfkSgoK4DJ5p-HanPI=/300x300/s3.amazonaws.com/kekanto_pics/pics/211/857211.jpg'
+            image: 'https://3.kekantoimg.com/qBML1ugEVRfkSgoK4DJ5p-HanPI=/300x300/s3.amazonaws.com/kekanto_pics/pics/211/857211.jpg',
+            // User data
+            filter: formData.filter,
+            ownerName: formData.name_owner,
+            ownerLastname: formData.lastname_owner,
+            email: formData.email,
+            password: formData.password
         };
 
         return new Promise((resolve, reject) => {

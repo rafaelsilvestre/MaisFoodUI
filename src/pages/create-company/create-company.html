@@ -28,11 +28,27 @@
                                     <input type="email" class="form-control" id="minimumValue" mask [maskPatterns]="moneyMask" formControlName="minimum_value" placeholder="Valor mínimo">
                                 </div>
                                 <div class="form-group">
-                                    <label for="filter">Filtro</label>
-                                    <select id="filter" class="form-control" formControlName="filter">
-                                        <option value="">Selecione uma opção</option>
-                                        <option [attr.value]="filter.id" *ngFor="let filter of filters;">{{ filter?.name }}</option>
-                                    </select>
+                                    <label>Filtro</label>
+
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="checkbox" *ngFor="let filter of filterPrimaryColumn; let i = index">
+                                                <input type="checkbox" [attr.id]="filter.id" name="filters[]" [attr.value]="filter.name" (change)="checkedFilter(filter, $event)">
+                                                <label class="glyphicon glyphicon-ok" [attr.for]="filter.id">
+                                                    <p>{{ filter?.name }}</p>
+                                                </label>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <div class="checkbox" *ngFor="let filter of filterSecondColumn; let i = index">
+                                                <input type="checkbox" [attr.id]="filter.id" name="filters[]" [attr.value]="filter.name">
+                                                <label class="glyphicon glyphicon-ok" [attr.for]="filter.id">
+                                                    <p>{{ filter?.name }}</p>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="col-md-12">
