@@ -59,10 +59,10 @@ export class CreateCompanyPage {
     saveCompany(formData: any): void {
         formData.minimum_value = formData.minimum_value.replace('R$ ', '').replace(',', '.');
 
-        // formData.filters = this.filtersChecked;
-        // this.companyService.saveCompany(formData).then((result) => {
-        //     this.router.navigate(['/companies']);
-        // }).catch((error) => console.log("Error", error));
+        formData.filters = this.filtersChecked;
+        this.companyService.saveCompany(formData).then((result) => {
+            this.router.navigate(['/companies']);
+        }).catch((error) => console.log("Error", error));
     }
 
     checkedFilter(filter: Filter, isChecked: boolean): void {
