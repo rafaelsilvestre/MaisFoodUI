@@ -12,6 +12,7 @@ import { CompanyPage } from '../pages/company/company';
 import { ProductsPage } from '../pages/products/products';
 import { FiltersPage } from '../pages/filters/filters';
 import { CreateFilterPage } from '../pages/create-filter/create-filter';
+import { EditProfilePage } from '../pages/edit-profile/edit-profile';
 
 import { AuthGuard } from '../providers/guards/auth-guard';
 
@@ -25,6 +26,7 @@ const appRoutes: Routes = [
 
     // USERS
     { path: 'users', component: UsersPage, canActivate: [AuthGuard] },
+    { path: 'edit-profile', component: EditProfilePage, canActivate: [AuthGuard] },
 
     // COMPANIES
     { path: 'companies', component: CompaniesPage, canActivate: [AuthGuard] },

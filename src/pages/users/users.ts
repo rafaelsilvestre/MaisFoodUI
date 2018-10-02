@@ -8,7 +8,7 @@ import { User } from '../../entities/user';
     styleUrls: ['./users.css']
 })
 export class UsersPage {
-    users: Array<User> = [];
+    users: Array<any> = [];
 
     constructor(private userService: UserServiceProvider){
         this.userService.getAllUsers().then((users) => {

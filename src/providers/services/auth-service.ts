@@ -1,21 +1,33 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from '@angular/common/http';
 import { sprintf } from 'sprintf-js';
-import {reject} from 'q';
+import { UserServiceProvider } from './user-service';
+import { Observable, Subscription } from 'rxjs';
 import Utils from '../../utils/utils';
-import {Observable, Subscription} from 'rxjs';
+import {Permission} from '../../enums/permition';
+import {reject} from 'q';
+import {User} from '../../entities/user';
+import {JwtHelper} from 'angular2-jwt';
 
 @Injectable()
 export class AuthServiceProvider{
     isLogged: boolean = false;
+    userToken: string;
+    jwtHelper: JwtHelper = new JwtHelper();
 
-    userFbSubscription: Subscription;
     loggedUserObservable: Observable<boolean>;
     loggedUserObservers: Array<Subscription> = [];
 
-    constructor(private http: HttpClient){
-        let currentToken = (<any>window).localStorage.getItem('token');
-        if (currentToken && currentToken != null) this.isLogged = true;
+
+
+    constructor(private http: HttpClient, private userService: UserServiceProvider){
+        const currentToken = localStorage.getItem('token');
+        this.userToken = currentToken;
+        if (currentToken && currentToken != null) {
+            this.isLogged = true;
+            this.informLoggedUserToObservers(true);
+            console.log("Token", currentToken);
+        }
 
         this.loggedUserObservable = Observable.create((observer) => {
             this.loggedUserObservers.push(observer);
@@ -29,6 +41,12 @@ export class AuthServiceProvider{
 
     private informLoggedUserToObservers(isLogged: boolean): void {
         for (const observer of this.loggedUserObservers) {
+            console.log("isLogged", isLogged);
+            const time = setInterval(() => {
+                console.log("Invocate new token");
+            }, 2000);
+            //}, 2700000);
+            if(!isLogged) clearInterval(time);
             (<any>observer).next(isLogged);
         }
     }
@@ -42,24 +60,60 @@ export class AuthServiceProvider{
                    return;
                }
 
-               this.informLoggedUserToObservers(true);
+               // Save this token in localStorage
                this.authenticationSuccessfully(authValue);
-               resolve(result);
+
+               // Return permissions this user
+               this.userService.getUserPermission().then((permission) => {
+                   if (permission[0] != Permission.ADMIN && permission[0] != Permission.COMPANY){
+                       this.authenticationSuccessfully(null);
+                       this.informLoggedUserToObservers(false);
+                       reject('permission-danied');
+                       return;
+                   }
+
+                   // Inform user logged
+                   this.informLoggedUserToObservers(true);
+
+                   // Set permission in localStorage
+                   localStorage.setItem('permission', permission[0]);
+                   resolve(result);
+               });
            }, (error) => {
+               if(error &&  error.status && error.status == 403){
+                   reject('account-not-found');
+                   return;
+               }
                reject(error);
            });
         });
     }
 
+    getUserLogged(): Promise<User>{
+        return new Promise((resolve, reject) => {
+            const userProfile = Utils.END_POINT_USER_LOGGED_PROFILE;
+            this.http.get(userProfile).subscribe((user: any) => {
+                resolve(user);
+            }, (error) => {
+                reject(error);
+            });
+        });
+    }
+
     authenticationSuccessfully(authValue: String): Promise<any>{
         return new Promise((resolve, reject) => {
+            if(authValue == null){
+                localStorage.removeItem('token');
+                return;
+            }
              let token = authValue.substring(7);
-            (<any>window).localStorage.setItem("token", token);
+            localStorage.setItem('token', token);
         });
     }
 
     logOut() : void{
-        (<any>window).localStorage.removeItem('token');
+        localStorage.removeItem('token');
+        localStorage.removeItem('permission');
         this.isLogged = false;
         this.informLoggedUserToObservers(false);
     }

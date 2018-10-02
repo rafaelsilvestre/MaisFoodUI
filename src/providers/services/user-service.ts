@@ -8,20 +8,27 @@ import Utils from "../../utils/utils";
 export class UserServiceProvider{
     constructor(private http: HttpClient){}
 
-    getAllUsers(): Promise<Array<User>>{
+    getAllUsers(): Promise<Array<any>>{
         return new Promise((resolve, reject) => {
             let allUsers: Array<User> = [];
             let usersPath = Utils.END_POINT_USERS;
             this.http.get(usersPath).subscribe((users: any) => {
-                users.forEach((user) => {
-                    allUsers.push(User.createUserObject(user));
-                });
-                if(users.length == allUsers.length)
-                    resolve(allUsers);
+                resolve(users);
             }, (error) => {
                 reject(error);
             });
         });
+    }
+
+    getUserPermission(): Promise<any>{
+        return new Promise((resolve, reject) => {
+            const userPermissionPath = Utils.END_POINT_USER_PERMISSIONS;
+            this.http.get(userPermissionPath).subscribe((permission) => {
+                resolve(permission);
+            }, (error) => {
+                reject(error);
+            });
+        })
     }
 
 }

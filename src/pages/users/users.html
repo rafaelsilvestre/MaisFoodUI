@@ -28,8 +28,8 @@
                             <td>{{ user.id }}</td>
                             <td>
                                 <a href="#">
-                                    <img [src]="user.gravatar" class="avatar" alt="Avatar">
-                                    {{ user?.displayName }}
+                                    <img [src]="user.gravatar ? user.gravatar : '#'" class="avatar" alt="Avatar">
+                                    {{ user?.name + ' ' + user.lastName }}
                                 </a>
                             </td>
                             <td>Admin</td>

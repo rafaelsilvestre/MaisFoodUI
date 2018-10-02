@@ -11,7 +11,28 @@
         </div>
 
         <div class="collapse navbar-collapse" id="navbar-collapse">
-            <ul class="nav navbar-nav navbar-right">
+            <ul class="nav navbar-nav navbar-right" *ngIf="userLogged && userLogged.permissions && userLogged.permissions[0] == 'ADMIN'">
+                <li [routerLink]="['/dashboard']" routerLinkActive="active"><a href="javascript:void(0);">Dashboard</a></li>
+
+                <li [routerLink]="['/filters']" routerLinkActive="active"><a href="javascript:void(0);">Filtros</a></li>
+                <li [routerLink]="['/companies']" routerLinkActive="active"><a href="javascript:void(0);">Estabelecimentos</a></li>
+                <li [routerLink]="['/users']" routerLinkActive="active"><a href="javascript:void(0);">Usuários</a></li>
+
+                <li class="dropdown">
+                    <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">
+                        <div class="img-rounded profile-img" [ngStyle]="{'background-image':'url(' + userLogged?.gravatar + ')', 'background-position': 'center center'}"></div>
+                        {{ userLogged ? userLogged.name + ' ' + userLogged.lastName : 'Carregando...' }} <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li [routerLink]="['/edit-profile']" routerLinkActive="active"><a href="javascript:void(0);">Meu Perfil</a></li>
+                        <li><a href="javascript:void(0);">Alterar Senha</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="javascript:void(0);" (click)="logout()">Sair</a></li>
+                    </ul>
+                </li>
+            </ul>
+
+            <ul class="nav navbar-nav navbar-right" *ngIf="userLogged && userLogged.permissions && userLogged.permissions[0] == 'COMPANY'">
                 <li [routerLink]="['/dashboard']" routerLinkActive="active"><a href="javascript:void(0);">Dashboard</a></li>
                 <li><a href="javascript:void(0);">Meus Pedidos</a></li>
                 <li [routerLink]="['/products']" routerLinkActive="active"><a href="javascript:void(0);">Produtos</a></li>
@@ -31,8 +52,8 @@
 
                 <li class="dropdown">
                     <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">
-                        <div class="img-rounded profile-img"></div>
-                        Rafael Silvestre <span class="caret"></span>
+                        <div class="img-rounded profile-img" [ngStyle]="{'background-image':'url(' + userLogged?.gravatar + ')', 'background-position': 'center center'}"></div>
+                        {{ userLogged ? userLogged.name + ' ' + userLogged.lastName : 'Carregando...' }} <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu">
                         <li><a href="javascript:void(0);">Meu Perfil</a></li>

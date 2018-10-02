@@ -20,6 +20,7 @@ import { CompanyPage } from '../pages/company/company';
 import { ProductsPage } from '../pages/products/products';
 import { FiltersPage } from '../pages/filters/filters';
 import { CreateFilterPage } from '../pages/create-filter/create-filter';
+import { EditProfilePage } from '../pages/edit-profile/edit-profile';
 
 import { InputMaskDirective } from '../directives/input-mask/input-mask';
 
@@ -51,6 +52,7 @@ import { AuthGuard } from '../providers/guards/auth-guard';
         ProductsPage,
         FiltersPage,
         CreateFilterPage,
+        EditProfilePage,
         // Directives
         InputMaskDirective,
         // Pipes

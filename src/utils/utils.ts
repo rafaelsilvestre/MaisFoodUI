@@ -4,6 +4,8 @@ export default class Utils {
 
     // USERS
     public static END_POINT_USERS = Utils.END_POINT_BASE_URL + "/user";
+    public static END_POINT_USER_PERMISSIONS = Utils.END_POINT_USERS + "/permissions";
+    public static END_POINT_USER_LOGGED_PROFILE = Utils.END_POINT_USERS + "/profile";
 
     // FILTERS
     public static END_POINT_FILTERS = Utils.END_POINT_BASE_URL + "/filter";

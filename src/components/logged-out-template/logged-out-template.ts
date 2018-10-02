@@ -26,17 +26,23 @@ export class LoggedOutTemplateComponent {
         });
     }
 
-    private getUserGravatar(email, size: number = 150): string{
-        return 'http://www.gravatar.com/avatar/' + md5(email) + '.jpg?s=' + size;
+    private getUserGravatar(email, size: number = 150): void{
+        this.userProfile.gravatar = 'http://www.gravatar.com/avatar/' + md5(email) + '.jpg?s=' + size;
     }
 
     private doLogin(data): void{
         this.authService.authUser(data).then((results) => {
-            this.userProfile.name = "Rafael Silvestre";
-            this.userProfile.gravatar = this.getUserGravatar(data.email);
             this.router.navigate(['/dashboard']);
         }).catch((error) => {
-            console.log(error);
+            if (error != null){
+                if(error == "permission-danied"){
+                    this.userProfile.name = "Permissão Negada";
+                }
+
+                if(error == "account-not-found"){
+                    this.userProfile.name = "Email ou senha inválidos";
+                }
+            }
         });
     }
 }
