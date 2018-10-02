@@ -31,10 +31,9 @@ export class CompanyServiceProvider{
             companyName: formData.name,
             description: formData.description,
             minimumValue: Number(formData.minimum_value),
-            filters: formData.filters,
             image: 'https://3.kekantoimg.com/qBML1ugEVRfkSgoK4DJ5p-HanPI=/300x300/s3.amazonaws.com/kekanto_pics/pics/211/857211.jpg',
             // User data
-            filter: formData.filter,
+            categories: formData.categories,
             ownerName: formData.name_owner,
             ownerLastname: formData.lastname_owner,
             email: formData.email,
