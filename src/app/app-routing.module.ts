@@ -13,6 +13,9 @@ import { ProductsPage } from '../pages/products/products';
 import { FiltersPage } from '../pages/filters/filters';
 import { CreateFilterPage } from '../pages/create-filter/create-filter';
 import { EditProfilePage } from '../pages/edit-profile/edit-profile';
+import { CreateProductPage } from '../pages/create-product/create-product';
+import { CategoriesPage } from '../pages/categories/categories';
+import { MyOrdersPage } from '../pages/my-orders/my-orders';
 
 import { AuthGuard } from '../providers/guards/auth-guard';
 
@@ -35,6 +38,13 @@ const appRoutes: Routes = [
 
     // PRODUCTS
     { path: 'products', component: ProductsPage, canActivate: [AuthGuard] },
+    { path: 'products/create', component: CreateProductPage, canActivate: [AuthGuard] },
+
+    // CATEGORIES
+    { path: 'categories', component: CategoriesPage, canActivate: [AuthGuard] },
+
+    // MY ORDERS
+    { path: 'my-orders', component: MyOrdersPage, canActivate: [AuthGuard] },
 
     // FILTERS
     { path: 'filters', component: FiltersPage, canActivate: [AuthGuard] },

@@ -50,6 +50,16 @@ export class CompanyServiceProvider{
         });
     }
 
+    getCompanyByUserLogged(): Promise<any> {
+        return new Promise((resolve, reject) => {
+            this.http.get(Utils.END_POINT_COMPANY_DATA_USER_LOGGED).subscribe((company) => {
+                resolve(company);
+            }, (error) => {
+                reject(error);
+            })
+        });
+    }
+
     deleteCompany(companyId: number): Promise<any>{
         return new Promise((resolve, reject) => {
             let companiesPath = sprintf(Utils.END_POINT_COMPANY, companyId);
@@ -60,5 +70,4 @@ export class CompanyServiceProvider{
             });
         });
     }
-
 }

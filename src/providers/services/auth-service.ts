@@ -26,7 +26,6 @@ export class AuthServiceProvider{
         if (currentToken && currentToken != null) {
             this.isLogged = true;
             this.informLoggedUserToObservers(true);
-            console.log("Token", currentToken);
         }
 
         this.loggedUserObservable = Observable.create((observer) => {

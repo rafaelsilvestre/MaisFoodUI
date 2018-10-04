@@ -21,6 +21,9 @@ import { ProductsPage } from '../pages/products/products';
 import { FiltersPage } from '../pages/filters/filters';
 import { CreateFilterPage } from '../pages/create-filter/create-filter';
 import { EditProfilePage } from '../pages/edit-profile/edit-profile';
+import { CreateProductPage } from '../pages/create-product/create-product';
+import { CategoriesPage } from '../pages/categories/categories';
+import { MyOrdersPage } from '../pages/my-orders/my-orders';
 
 import { InputMaskDirective } from '../directives/input-mask/input-mask';
 
@@ -30,6 +33,7 @@ import { UserServiceProvider } from '../providers/services/user-service';
 import { AuthServiceProvider } from '../providers/services/auth-service';
 import { CompanyServiceProvider } from '../providers/services/company-service';
 import { FilterServiceProvider } from '../providers/services/filter-service';
+import { ProductServiceProvider } from '../providers/services/product-service';
 import { AuthInterceptorProvider } from '../providers/interceptors/auth-interceptor';
 
 import { AuthGuard } from '../providers/guards/auth-guard';
@@ -53,6 +57,9 @@ import { AuthGuard } from '../providers/guards/auth-guard';
         FiltersPage,
         CreateFilterPage,
         EditProfilePage,
+        CreateProductPage,
+        CategoriesPage,
+        MyOrdersPage,
         // Directives
         InputMaskDirective,
         // Pipes
@@ -72,6 +79,7 @@ import { AuthGuard } from '../providers/guards/auth-guard';
         UserServiceProvider,
         AuthServiceProvider,
         CompanyServiceProvider,
+        ProductServiceProvider,
         AuthInterceptorProvider,
         FilterServiceProvider
     ],
