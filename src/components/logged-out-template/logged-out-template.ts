@@ -26,11 +26,11 @@ export class LoggedOutTemplateComponent {
         });
     }
 
-    private getUserGravatar(email, size: number = 150): void{
+    getUserGravatar(email, size: number = 150): void{
         this.userProfile.gravatar = 'http://www.gravatar.com/avatar/' + md5(email) + '.jpg?s=' + size;
     }
 
-    private doLogin(data): void{
+    doLogin(data): void{
         this.authService.authUser(data).then((results) => {
             this.router.navigate(['/dashboard']);
         }).catch((error) => {
