@@ -68,22 +68,22 @@
                                     <input type="text" mask [maskPatterns]="hourMask" [maxlength]="5" [formControl]="workedDaysFormGroup.controls['monday'].controls.start" class="form-control">
                                 </td>
                                 <td>
-                                    <input type="text" mask [maskPatterns]="hourMask" [maxlength]="5" [formControl]="workedDaysFormGroup.controls['monday'].controls.start" class="form-control">
+                                    <input type="text" mask [maskPatterns]="hourMask" [maxlength]="5" [formControl]="workedDaysFormGroup.controls['tuesday'].controls.start" class="form-control">
                                 </td>
                                 <td>
-                                    <input type="text" mask [maskPatterns]="hourMask" [maxlength]="5" [formControl]="workedDaysFormGroup.controls['monday'].controls.start" class="form-control">
+                                    <input type="text" mask [maskPatterns]="hourMask" [maxlength]="5" [formControl]="workedDaysFormGroup.controls['wednesday'].controls.start" class="form-control">
                                 </td>
                                 <td>
-                                    <input type="text" mask [maskPatterns]="hourMask" [maxlength]="5" [formControl]="workedDaysFormGroup.controls['monday'].controls.start" class="form-control">
+                                    <input type="text" mask [maskPatterns]="hourMask" [maxlength]="5" [formControl]="workedDaysFormGroup.controls['thursday'].controls.start" class="form-control">
                                 </td>
                                 <td>
-                                    <input type="text" mask [maskPatterns]="hourMask" [maxlength]="5" [formControl]="workedDaysFormGroup.controls['monday'].controls.start" class="form-control">
+                                    <input type="text" mask [maskPatterns]="hourMask" [maxlength]="5" [formControl]="workedDaysFormGroup.controls['friday'].controls.start" class="form-control">
                                 </td>
                                 <td>
-                                    <input type="text" mask [maskPatterns]="hourMask" [maxlength]="5" [formControl]="workedDaysFormGroup.controls['monday'].controls.start" class="form-control">
+                                    <input type="text" mask [maskPatterns]="hourMask" [maxlength]="5" [formControl]="workedDaysFormGroup.controls['saturday'].controls.start" class="form-control">
                                 </td>
                                 <td>
-                                    <input type="text" mask [maskPatterns]="hourMask" [maxlength]="5" [formControl]="workedDaysFormGroup.controls['monday'].controls.start" class="form-control">
+                                    <input type="text" mask [maskPatterns]="hourMask" [maxlength]="5" [formControl]="workedDaysFormGroup.controls['sunday'].controls.start" class="form-control">
                                 </td>
                             </tr>
                             <tr *ngIf="intervalOnTheDay">
@@ -158,6 +158,7 @@
                                 </td>
                             </tr>
                         </tbody>
+                        <button class="btn btn-success">Salvar</button>
                     </form>
                 </div>
             </div>
