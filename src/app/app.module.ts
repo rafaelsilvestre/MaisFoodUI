@@ -24,6 +24,7 @@ import { EditProfilePage } from '../pages/edit-profile/edit-profile';
 import { CreateProductPage } from '../pages/create-product/create-product';
 import { CategoriesPage } from '../pages/categories/categories';
 import { MyOrdersPage } from '../pages/my-orders/my-orders';
+import { CreateCategoryPage } from '../pages/create-category/create-category';
 
 import { InputMaskDirective } from '../directives/input-mask/input-mask';
 
@@ -34,6 +35,8 @@ import { AuthServiceProvider } from '../providers/services/auth-service';
 import { CompanyServiceProvider } from '../providers/services/company-service';
 import { FilterServiceProvider } from '../providers/services/filter-service';
 import { ProductServiceProvider } from '../providers/services/product-service';
+import { CategoryServiceProvider } from '../providers/services/category-service';
+
 import { AuthInterceptorProvider } from '../providers/interceptors/auth-interceptor';
 
 import { AuthGuard } from '../providers/guards/auth-guard';
@@ -60,6 +63,7 @@ import { AuthGuard } from '../providers/guards/auth-guard';
         CreateProductPage,
         CategoriesPage,
         MyOrdersPage,
+        CreateCategoryPage,
         // Directives
         InputMaskDirective,
         // Pipes
@@ -80,6 +84,7 @@ import { AuthGuard } from '../providers/guards/auth-guard';
         AuthServiceProvider,
         CompanyServiceProvider,
         ProductServiceProvider,
+        CategoryServiceProvider,
         AuthInterceptorProvider,
         FilterServiceProvider
     ],

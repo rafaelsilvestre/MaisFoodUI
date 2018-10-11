@@ -16,6 +16,7 @@ import { EditProfilePage } from '../pages/edit-profile/edit-profile';
 import { CreateProductPage } from '../pages/create-product/create-product';
 import { CategoriesPage } from '../pages/categories/categories';
 import { MyOrdersPage } from '../pages/my-orders/my-orders';
+import { CreateCategoryPage } from '../pages/create-category/create-category';
 
 import { AuthGuard } from '../providers/guards/auth-guard';
 
@@ -42,6 +43,7 @@ const appRoutes: Routes = [
 
     // CATEGORIES
     { path: 'categories', component: CategoriesPage, canActivate: [AuthGuard] },
+    { path: 'categories/create', component: CreateCategoryPage, canActivate: [AuthGuard] },
 
     // MY ORDERS
     { path: 'my-orders', component: MyOrdersPage, canActivate: [AuthGuard] },

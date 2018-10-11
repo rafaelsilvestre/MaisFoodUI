@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {CategoryServiceProvider} from '../../providers/services/category-service';
 
 @Component({
     selector: 'categories-page',
@@ -6,5 +7,11 @@ import { Component } from '@angular/core';
     styleUrls: ['./categories.css']
 })
 export class CategoriesPage {
-    constructor(){}
+    categories: Array<any> = [];
+
+    constructor(private categoryService: CategoryServiceProvider){
+        this.categoryService.getAllCategories().then((categories) => {
+           this.categories = categories;
+        });
+    }
 }

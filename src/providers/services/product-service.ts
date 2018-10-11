@@ -21,6 +21,9 @@ export class ProductServiceProvider{
     saveProductByCompany(companyId: number, data: any): Promise<any> {
         return new Promise((resolve, reject) => {
             let companyProductsPath = sprintf(Utils.END_POINT_COMPANY_PRODUCTS, companyId);
+            data.category = {
+                id: data.category
+            };
             this.http.post(companyProductsPath, data).subscribe((result) => {
                 resolve(result);
             }, (error) => {

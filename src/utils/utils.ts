@@ -16,6 +16,9 @@ export default class Utils {
     public static END_POINT_COMPANY = Utils.END_POINT_COMPANIES + "/%s";
     public static END_POINT_COMPANY_DATA_USER_LOGGED = Utils.END_POINT_COMPANIES + "/data";
 
+    // CATEGORIES
+    public static END_POINT_CATEGORIES = Utils.END_POINT_BASE_URL + "/category";
+
     // PRODUCTS
     public static END_POINT_PRODUCTS = Utils.END_POINT_BASE_URL + "/product";
     public static END_POINT_COMPANY_PRODUCTS = Utils.END_POINT_PRODUCTS + "/%s";

@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import {ProductServiceProvider} from '../../providers/services/product-service';
 import {CompanyServiceProvider} from '../../providers/services/company-service';
+import {CategoryServiceProvider} from '../../providers/services/category-service';
 
 @Component({
     selector: 'create-product-page',
@@ -11,12 +12,20 @@ import {CompanyServiceProvider} from '../../providers/services/company-service';
 })
 export class CreateProductPage {
     formGroup: FormGroup;
+    categories: Array<any> = [];
 
     constructor(private formBuilder: FormBuilder, private router: Router,
-                private productService: ProductServiceProvider, private companyService: CompanyServiceProvider) {
+                private productService: ProductServiceProvider, private companyService: CompanyServiceProvider,
+                private categoryService: CategoryServiceProvider) {
+
+        this.categoryService.getAllCategories().then((categories) => {
+            this.categories = categories;
+        }).catch((error) => console.log("Error", error));
+
         this.formGroup = this.formBuilder.group({
             name: ['', [Validators.required]],
             description: ['', [Validators.required]],
+            category: ['', Validators.required],
             price: ['', [Validators.required]]
         });
     }
