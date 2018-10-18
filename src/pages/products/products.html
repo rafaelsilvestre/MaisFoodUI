@@ -18,7 +18,7 @@
                     <tr>
                         <th>#</th>
                         <th>Nome</th>
-                        <th>Descrição</th>
+                        <th style="width: 50%;">Descrição</th>
                         <th>Categoria</th>
                         <th>Valor</th>
                         <th>Ação</th>
@@ -34,11 +34,11 @@
                             </a>
                         </td>
                         <td><p>{{ product?.description }}</p></td>
-                        <td><span class="status text-success">&bull;</span> Bebidas</td>
-                        <td>{{ product?.price }}</td>
+                        <td><span class="status text-success">&bull;</span> {{ product?.category?.name }}</td>
+                        <td>{{ product?.price | money }}</td>
                         <td>
-                            <a href="javascript:void(0);" class="settings" title="Editar" data-toggle="tooltip"><i class="glyphicon glyphicon-cog"></i></a>
-                            <a href="javascript:void(0);" class="delete" title="Apagar" data-toggle="tooltip"><i class="glyphicon glyphicon-trash"></i></a>
+                            <a href="javascript:void(0);" class="settings" title="Editar" [routerLink]="['/products/edit', product.id]" data-toggle="tooltip"><i class="glyphicon glyphicon-cog"></i></a>
+                            <a href="javascript:void(0);" class="delete" title="Apagar" (click)="deleteProduct(product.id, i)" data-toggle="tooltip"><i class="glyphicon glyphicon-trash"></i></a>
                         </td>
                     </tr>
                     <tr *ngIf="products.length == 0">

@@ -5,4 +5,6 @@ import { Component } from '@angular/core';
     templateUrl: './my-orders.html',
     styleUrls: ['./my-orders.css']
 })
-export class MyOrdersPage {}
+export class MyOrdersPage {
+    orders: Array<any> = [];
+}

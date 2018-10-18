@@ -22,6 +22,7 @@ export default class Utils {
     // PRODUCTS
     public static END_POINT_PRODUCTS = Utils.END_POINT_BASE_URL + "/product";
     public static END_POINT_COMPANY_PRODUCTS = Utils.END_POINT_PRODUCTS + "/%s";
+    public static END_POINT_PRODUCT = Utils.END_POINT_PRODUCTS + "/%s";
 
     // AUTH
     public static END_POINT_AUTH_USER = Utils.END_POINT_BASE_URL + "/login";

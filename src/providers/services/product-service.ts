@@ -31,4 +31,15 @@ export class ProductServiceProvider{
             })
         });
     }
+
+    deleteProduct(productId: number): Promise<any> {
+        return new Promise((resolve, reject) => {
+            let productPath = sprintf(Utils.END_POINT_PRODUCT, productId);
+            this.http.delete(productPath).subscribe((result) => {
+                resolve(result);
+            }, (error) => {
+                reject(error);
+            });
+        })
+    }
 }

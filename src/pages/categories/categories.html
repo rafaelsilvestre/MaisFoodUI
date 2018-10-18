@@ -18,15 +18,13 @@
                     <tr>
                         <th>#</th>
                         <th>Nome</th>
-                        <th>Empresas</th>
-                        <th>Action</th>
+                        <th>Ação</th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr *ngFor="let category of categories; let i = index">
                         <td>{{ category.id }}</td>
                         <td>{{ category?.name }}</td>
-                        <td>12</td>
                         <td>
                             <a href="javascript:void(0);" class="settings" title="Editar" data-toggle="tooltip"><i class="glyphicon glyphicon-cog"></i></a>
                             <a href="javascript:void(0);" class="delete" title="Apagar" data-toggle="tooltip"><i class="glyphicon glyphicon-trash"></i></a>

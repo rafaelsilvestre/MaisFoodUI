@@ -1,17 +1,17 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { ProductServiceProvider } from '../../providers/services/product-service';
-import { CompanyServiceProvider } from '../../providers/services/company-service';
-import { CategoryServiceProvider } from '../../providers/services/category-service';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import Utils from '../../utils/utils';
+import {Router} from '@angular/router';
+import {ProductServiceProvider} from '../../providers/services/product-service';
+import {CompanyServiceProvider} from '../../providers/services/company-service';
+import {CategoryServiceProvider} from '../../providers/services/category-service';
 
 @Component({
-    selector: 'create-product-page',
-    templateUrl: './create-product.html',
-    styleUrls: ['./create-product.css']
+    selector: 'edit-product-page',
+    templateUrl: './edit-product.html',
+    styleUrls: ['./edit-product.css']
 })
-export class CreateProductPage {
+export class EditProductPage {
     formGroup: FormGroup;
     categories: Array<any> = [];
     moneyMask = Utils.getMoneyMask();

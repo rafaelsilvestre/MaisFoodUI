@@ -25,6 +25,7 @@ import { CreateProductPage } from '../pages/create-product/create-product';
 import { CategoriesPage } from '../pages/categories/categories';
 import { MyOrdersPage } from '../pages/my-orders/my-orders';
 import { CreateCategoryPage } from '../pages/create-category/create-category';
+import { EditProductPage } from '../pages/edit-product/edit-product';
 
 import { InputMaskDirective } from '../directives/input-mask/input-mask';
 
@@ -64,6 +65,7 @@ import { AuthGuard } from '../providers/guards/auth-guard';
         CategoriesPage,
         MyOrdersPage,
         CreateCategoryPage,
+        EditProductPage,
         // Directives
         InputMaskDirective,
         // Pipes
