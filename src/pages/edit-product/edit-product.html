@@ -5,7 +5,7 @@
                 <div class="panel-title">
                     <div class="row">
                         <div class="col-sm-5">
-                            <h2>Editar Produto (NomeProduto)</h2>
+                            <h2 *ngIf="product">Editar Produto <span>{{ '(' + product?.name + ')' }}</span></h2>
                         </div>
                         <div class="col-sm-7"></div>
                     </div>
@@ -35,7 +35,50 @@
                                 </div>
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-success" [disabled]="!formGroup.valid" (click)="saveProduct(formGroup.value)">Salvar</button>
+                        <button type="submit" class="btn btn-success" [disabled]="!formGroup.valid" (click)="updateProduct(formGroup.value)">Salvar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-title">
+                    <div class="row">
+                        <div class="col-sm-5">
+                            <h2 *ngIf="product">Editar Produto <span>{{ '(' + product?.name + ')' }}</span></h2>
+                        </div>
+                        <div class="col-sm-7"></div>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <form [formGroup]="formGroup">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="name">Nome</label>
+                                    <input type="email" class="form-control" id="name" formControlName="name" placeholder="Nome">
+                                </div>
+                                <div class="form-group">
+                                    <label for="description">Descrição ({{ formGroup.controls['description'].value.length }}/255)</label>
+                                    <textarea id="description" maxlength="255" class="form-control" formControlName="description" placeholder="Descrição" rows="3"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="description">Categoria</label>
+                                    <select class="form-control" formControlName="category">
+                                        <option value="">Selecione uma opção</option>
+                                        <option *ngFor="let category of categories" [attr.value]="category?.id">{{ category?.name }}</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="price">Preço</label>
+                                    <input type="text" class="form-control" mask [maskPatterns]="moneyMask" id="price" formControlName="price" placeholder="Preço">
+                                </div>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-success" [disabled]="!formGroup.valid" (click)="updateProduct(formGroup.value)">Salvar</button>
                     </form>
                 </div>
             </div>

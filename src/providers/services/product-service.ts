@@ -42,4 +42,29 @@ export class ProductServiceProvider{
             });
         })
     }
+
+    getProductById(productId: number): Promise<any> {
+        return new Promise((resolve, reject) => {
+            let productPath = sprintf(Utils.END_POINT_PRODUCT_DATA, productId);
+            this.http.get(productPath).subscribe((result) => {
+                resolve(result);
+            }, (error) => {
+                reject(error);
+            });
+        });
+    }
+
+    updateProduct(productId: number, requestData: any): Promise<any> {
+        return new Promise((resolve, reject) => {
+            let productPath = sprintf(Utils.END_POINT_PRODUCT, productId);
+            requestData.category = {
+                id: requestData.category
+            };
+            this.http.put(productPath, requestData).subscribe((result) => {
+                resolve(result);
+            }, (error) => {
+                reject(error);
+            });
+        });
+    }
 }

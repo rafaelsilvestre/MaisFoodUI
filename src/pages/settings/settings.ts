@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import Utils from '../../utils/utils';
-import {min} from 'rxjs/internal/operators';
+import { CompanyServiceProvider } from '../../providers/services/company-service';
+import {MoneyPipe} from '../../pipes/money-mask/money-mask';
+import swal from "sweetalert2";
 
 @Component({
     selector: 'settings-page',
@@ -14,13 +16,19 @@ export class SettingsPage {
     moneyMask: any = Utils.getMoneyMask();
     hourMask = Utils.getHourMask();
     intervalOnTheDay: boolean = false;
+    company: any;
 
-    constructor(private formBuilder: FormBuilder){
+    constructor(private formBuilder: FormBuilder, private companyService: CompanyServiceProvider){
         this.settingsFormGroup = this.formBuilder.group({
             name: ["", [Validators.required]],
             description: ["", [Validators.required]],
             minimumValue: ["", Validators.required]
         });
+
+        this.companyService.getCompanyByUserLogged().then((company) => {
+            this.company = company;
+            this.resolveCompanyData();
+        }).catch((error) => console.log("Error", error));
 
         this.workedDaysFormGroup = this.formBuilder.group({
             monday: this.formBuilder.group({
@@ -52,11 +60,30 @@ export class SettingsPage {
                 end: ["", Validators.minLength(5)]
             })
         });
+    }
 
-        console.log();
+    resolveCompanyData(): void {
+        if(this.company == null) return;
+
+        this.settingsFormGroup.controls['name'].setValue(this.company.name);
+        this.settingsFormGroup.controls['description'].setValue(this.company.description);
+        this.settingsFormGroup.controls['minimumValue'].setValue(new MoneyPipe().transform(this.company.minimumValue));
     }
 
     saveSettings(data): void {
+        if(isNaN(data.minimumValue))
+            data.minimumValue = data.minimumValue.toString().replace('R$ ', '').replace(',', '.');
+        data.companyName = data.name;
+        this.companyService.getCompanyByUserLogged().then((company) => {
+            this.companyService.updateCompany(company.id, data).then(() => {
+                swal({
+                    title: 'Dados salvos com sucesso!',
+                    confirmButtonText:  'Ok',
+                    showCancelButton: false,
+                    showCloseButton: false
+                });
+            }).catch((error) => console.log("Error", error));
+        }).catch((error) => console.log("Error", error));
         console.log(data);
     }
 }

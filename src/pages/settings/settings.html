@@ -2,7 +2,14 @@
     <div class="row">
         <div class="col-md-12">
             <div class="panel panel-default">
-                <div class="panel-heading">Configurações</div>
+                <div class="panel-title">
+                    <div class="row">
+                        <div class="col-sm-5">
+                            <h2>Configurações</h2>
+                        </div>
+                        <div class="col-sm-7"></div>
+                    </div>
+                </div>
                 <div class="panel-body">
                     <form [formGroup]="settingsFormGroup">
                         <div class="form-group">
@@ -21,148 +28,160 @@
                     </form>
                 </div>
             </div>
+        </div>
+    </div>
 
+    <div class="row">
+        <div class="col-md-12">
             <div class="panel panel-default">
-                <div class="panel-heading">Horário de Funcionamento <span class="interval"><input type="checkbox" [(ngModel)]="intervalOnTheDay"> Intervalo no dia</span></div>
+                <div class="panel-title">
+                    <div class="row">
+                        <div class="col-sm-5">
+                            <h2>Horário de Funcionamento</h2>
+                        </div>
+                        <div class="col-sm-7">
+                            <span class="interval"><input type="checkbox" [(ngModel)]="intervalOnTheDay"> Intervalo no dia</span>
+                        </div>
+                    </div>
+                </div>
                 <div class="panel-body">
                     <form [formGroup]="workedDaysFormGroup" class="table">
                         <thead>
-                            <tr>
-                                <td></td>
-                                <td class="text-center">Segunda</td>
-                                <td class="text-center">Terça</td>
-                                <td class="text-center">Quarta</td>
-                                <td class="text-center">Quinta</td>
-                                <td class="text-center">Sexta</td>
-                                <td class="text-center">Sábado</td>
-                                <td class="text-center">Domingo</td>
-                            </tr>
+                        <tr>
+                            <td></td>
+                            <td class="text-center">Segunda</td>
+                            <td class="text-center">Terça</td>
+                            <td class="text-center">Quarta</td>
+                            <td class="text-center">Quinta</td>
+                            <td class="text-center">Sexta</td>
+                            <td class="text-center">Sábado</td>
+                            <td class="text-center">Domingo</td>
+                        </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td rowspan="2">1º Período</td>
-                                <td>
-                                    <input type="text" mask [maskPatterns]="hourMask" [maxlength]="5" [formControl]="workedDaysFormGroup.controls['monday'].controls.start" class="form-control">
-                                </td>
-                                <td>
-                                    <input type="text" mask [maskPatterns]="hourMask" [maxlength]="5" [formControl]="workedDaysFormGroup.controls['tuesday'].controls.start" class="form-control">
-                                </td>
-                                <td>
-                                    <input type="text" mask [maskPatterns]="hourMask" [maxlength]="5" [formControl]="workedDaysFormGroup.controls['wednesday'].controls.start" class="form-control">
-                                </td>
-                                <td>
-                                    <input type="text" mask [maskPatterns]="hourMask" [maxlength]="5" [formControl]="workedDaysFormGroup.controls['thursday'].controls.start" class="form-control">
-                                </td>
-                                <td>
-                                    <input type="text" mask [maskPatterns]="hourMask" [maxlength]="5" [formControl]="workedDaysFormGroup.controls['friday'].controls.start" class="form-control">
-                                </td>
-                                <td>
-                                    <input type="text" mask [maskPatterns]="hourMask" [maxlength]="5" [formControl]="workedDaysFormGroup.controls['saturday'].controls.start" class="form-control">
-                                </td>
-                                <td>
-                                    <input type="text" mask [maskPatterns]="hourMask" [maxlength]="5" [formControl]="workedDaysFormGroup.controls['sunday'].controls.start" class="form-control">
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <input type="text" mask [maskPatterns]="hourMask" [maxlength]="5" [formControl]="workedDaysFormGroup.controls['monday'].controls.start" class="form-control">
-                                </td>
-                                <td>
-                                    <input type="text" mask [maskPatterns]="hourMask" [maxlength]="5" [formControl]="workedDaysFormGroup.controls['tuesday'].controls.start" class="form-control">
-                                </td>
-                                <td>
-                                    <input type="text" mask [maskPatterns]="hourMask" [maxlength]="5" [formControl]="workedDaysFormGroup.controls['wednesday'].controls.start" class="form-control">
-                                </td>
-                                <td>
-                                    <input type="text" mask [maskPatterns]="hourMask" [maxlength]="5" [formControl]="workedDaysFormGroup.controls['thursday'].controls.start" class="form-control">
-                                </td>
-                                <td>
-                                    <input type="text" mask [maskPatterns]="hourMask" [maxlength]="5" [formControl]="workedDaysFormGroup.controls['friday'].controls.start" class="form-control">
-                                </td>
-                                <td>
-                                    <input type="text" mask [maskPatterns]="hourMask" [maxlength]="5" [formControl]="workedDaysFormGroup.controls['saturday'].controls.start" class="form-control">
-                                </td>
-                                <td>
-                                    <input type="text" mask [maskPatterns]="hourMask" [maxlength]="5" [formControl]="workedDaysFormGroup.controls['sunday'].controls.start" class="form-control">
-                                </td>
-                            </tr>
-                            <tr *ngIf="intervalOnTheDay">
-                                <td></td>
-                                <td>
-                                    <p class="interval-text">Intervalo</p>
-                                </td>
-                                <td>
-                                    <p class="interval-text">Intervalo</p>
-                                </td>
-                                <td>
-                                    <p class="interval-text">Intervalo</p>
-                                </td>
-                                <td>
-                                    <p class="interval-text">Intervalo</p>
-                                </td>
-                                <td>
-                                    <p class="interval-text">Intervalo</p>
-                                </td>
-                                <td>
-                                    <p class="interval-text">Intervalo</p>
-                                </td>
-                                <td>
-                                    <p class="interval-text">Intervalo</p>
-                                </td>
-                            </tr>
-                            <tr *ngIf="intervalOnTheDay">
-                                <td rowspan="2">2º Período</td>
-                                <td>
-                                    <input type="text" mask [maskPatterns]="hourMask" [maxlength]="5" [formControl]="workedDaysFormGroup.controls['monday'].controls.start" class="form-control">
-                                </td>
-                                <td>
-                                    <input type="text" mask [maskPatterns]="hourMask" [maxlength]="5" [formControl]="workedDaysFormGroup.controls['monday'].controls.start" class="form-control">
-                                </td>
-                                <td>
-                                    <input type="text" mask [maskPatterns]="hourMask" [maxlength]="5" [formControl]="workedDaysFormGroup.controls['monday'].controls.start" class="form-control">
-                                </td>
-                                <td>
-                                    <input type="text" mask [maskPatterns]="hourMask" [maxlength]="5" [formControl]="workedDaysFormGroup.controls['monday'].controls.start" class="form-control">
-                                </td>
-                                <td>
-                                    <input type="text" mask [maskPatterns]="hourMask" [maxlength]="5" [formControl]="workedDaysFormGroup.controls['monday'].controls.start" class="form-control">
-                                </td>
-                                <td>
-                                    <input type="text" mask [maskPatterns]="hourMask" [maxlength]="5" [formControl]="workedDaysFormGroup.controls['monday'].controls.start" class="form-control">
-                                </td>
-                                <td>
-                                    <input type="text" mask [maskPatterns]="hourMask" [maxlength]="5" [formControl]="workedDaysFormGroup.controls['monday'].controls.start" class="form-control">
-                                </td>
-                            </tr>
-                            <tr *ngIf="intervalOnTheDay">
-                                <td>
-                                    <input type="text" mask [maskPatterns]="hourMask" [maxlength]="5" [formControl]="workedDaysFormGroup.controls['monday'].controls.start" class="form-control">
-                                </td>
-                                <td>
-                                    <input type="text" mask [maskPatterns]="hourMask" [maxlength]="5" [formControl]="workedDaysFormGroup.controls['monday'].controls.start" class="form-control">
-                                </td>
-                                <td>
-                                    <input type="text" mask [maskPatterns]="hourMask" [maxlength]="5" [formControl]="workedDaysFormGroup.controls['monday'].controls.start" class="form-control">
-                                </td>
-                                <td>
-                                    <input type="text" mask [maskPatterns]="hourMask" [maxlength]="5" [formControl]="workedDaysFormGroup.controls['monday'].controls.start" class="form-control">
-                                </td>
-                                <td>
-                                    <input type="text" mask [maskPatterns]="hourMask" [maxlength]="5" [formControl]="workedDaysFormGroup.controls['monday'].controls.start" class="form-control">
-                                </td>
-                                <td>
-                                    <input type="text" mask [maskPatterns]="hourMask" [maxlength]="5" [formControl]="workedDaysFormGroup.controls['monday'].controls.start" class="form-control">
-                                </td>
-                                <td>
-                                    <input type="text" mask [maskPatterns]="hourMask" [maxlength]="5" [formControl]="workedDaysFormGroup.controls['monday'].controls.start" class="form-control">
-                                </td>
-                            </tr>
+                        <tr>
+                            <td rowspan="2">1º Período</td>
+                            <td>
+                                <input type="text" mask [maskPatterns]="hourMask" [maxlength]="5" [formControl]="workedDaysFormGroup.controls['monday'].controls.start" class="form-control">
+                            </td>
+                            <td>
+                                <input type="text" mask [maskPatterns]="hourMask" [maxlength]="5" [formControl]="workedDaysFormGroup.controls['tuesday'].controls.start" class="form-control">
+                            </td>
+                            <td>
+                                <input type="text" mask [maskPatterns]="hourMask" [maxlength]="5" [formControl]="workedDaysFormGroup.controls['wednesday'].controls.start" class="form-control">
+                            </td>
+                            <td>
+                                <input type="text" mask [maskPatterns]="hourMask" [maxlength]="5" [formControl]="workedDaysFormGroup.controls['thursday'].controls.start" class="form-control">
+                            </td>
+                            <td>
+                                <input type="text" mask [maskPatterns]="hourMask" [maxlength]="5" [formControl]="workedDaysFormGroup.controls['friday'].controls.start" class="form-control">
+                            </td>
+                            <td>
+                                <input type="text" mask [maskPatterns]="hourMask" [maxlength]="5" [formControl]="workedDaysFormGroup.controls['saturday'].controls.start" class="form-control">
+                            </td>
+                            <td>
+                                <input type="text" mask [maskPatterns]="hourMask" [maxlength]="5" [formControl]="workedDaysFormGroup.controls['sunday'].controls.start" class="form-control">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="text" mask [maskPatterns]="hourMask" [maxlength]="5" [formControl]="workedDaysFormGroup.controls['monday'].controls.start" class="form-control">
+                            </td>
+                            <td>
+                                <input type="text" mask [maskPatterns]="hourMask" [maxlength]="5" [formControl]="workedDaysFormGroup.controls['tuesday'].controls.start" class="form-control">
+                            </td>
+                            <td>
+                                <input type="text" mask [maskPatterns]="hourMask" [maxlength]="5" [formControl]="workedDaysFormGroup.controls['wednesday'].controls.start" class="form-control">
+                            </td>
+                            <td>
+                                <input type="text" mask [maskPatterns]="hourMask" [maxlength]="5" [formControl]="workedDaysFormGroup.controls['thursday'].controls.start" class="form-control">
+                            </td>
+                            <td>
+                                <input type="text" mask [maskPatterns]="hourMask" [maxlength]="5" [formControl]="workedDaysFormGroup.controls['friday'].controls.start" class="form-control">
+                            </td>
+                            <td>
+                                <input type="text" mask [maskPatterns]="hourMask" [maxlength]="5" [formControl]="workedDaysFormGroup.controls['saturday'].controls.start" class="form-control">
+                            </td>
+                            <td>
+                                <input type="text" mask [maskPatterns]="hourMask" [maxlength]="5" [formControl]="workedDaysFormGroup.controls['sunday'].controls.start" class="form-control">
+                            </td>
+                        </tr>
+                        <tr *ngIf="intervalOnTheDay">
+                            <td></td>
+                            <td>
+                                <p class="interval-text">Intervalo</p>
+                            </td>
+                            <td>
+                                <p class="interval-text">Intervalo</p>
+                            </td>
+                            <td>
+                                <p class="interval-text">Intervalo</p>
+                            </td>
+                            <td>
+                                <p class="interval-text">Intervalo</p>
+                            </td>
+                            <td>
+                                <p class="interval-text">Intervalo</p>
+                            </td>
+                            <td>
+                                <p class="interval-text">Intervalo</p>
+                            </td>
+                            <td>
+                                <p class="interval-text">Intervalo</p>
+                            </td>
+                        </tr>
+                        <tr *ngIf="intervalOnTheDay">
+                            <td rowspan="2">2º Período</td>
+                            <td>
+                                <input type="text" mask [maskPatterns]="hourMask" [maxlength]="5" [formControl]="workedDaysFormGroup.controls['monday'].controls.start" class="form-control">
+                            </td>
+                            <td>
+                                <input type="text" mask [maskPatterns]="hourMask" [maxlength]="5" [formControl]="workedDaysFormGroup.controls['monday'].controls.start" class="form-control">
+                            </td>
+                            <td>
+                                <input type="text" mask [maskPatterns]="hourMask" [maxlength]="5" [formControl]="workedDaysFormGroup.controls['monday'].controls.start" class="form-control">
+                            </td>
+                            <td>
+                                <input type="text" mask [maskPatterns]="hourMask" [maxlength]="5" [formControl]="workedDaysFormGroup.controls['monday'].controls.start" class="form-control">
+                            </td>
+                            <td>
+                                <input type="text" mask [maskPatterns]="hourMask" [maxlength]="5" [formControl]="workedDaysFormGroup.controls['monday'].controls.start" class="form-control">
+                            </td>
+                            <td>
+                                <input type="text" mask [maskPatterns]="hourMask" [maxlength]="5" [formControl]="workedDaysFormGroup.controls['monday'].controls.start" class="form-control">
+                            </td>
+                            <td>
+                                <input type="text" mask [maskPatterns]="hourMask" [maxlength]="5" [formControl]="workedDaysFormGroup.controls['monday'].controls.start" class="form-control">
+                            </td>
+                        </tr>
+                        <tr *ngIf="intervalOnTheDay">
+                            <td>
+                                <input type="text" mask [maskPatterns]="hourMask" [maxlength]="5" [formControl]="workedDaysFormGroup.controls['monday'].controls.start" class="form-control">
+                            </td>
+                            <td>
+                                <input type="text" mask [maskPatterns]="hourMask" [maxlength]="5" [formControl]="workedDaysFormGroup.controls['monday'].controls.start" class="form-control">
+                            </td>
+                            <td>
+                                <input type="text" mask [maskPatterns]="hourMask" [maxlength]="5" [formControl]="workedDaysFormGroup.controls['monday'].controls.start" class="form-control">
+                            </td>
+                            <td>
+                                <input type="text" mask [maskPatterns]="hourMask" [maxlength]="5" [formControl]="workedDaysFormGroup.controls['monday'].controls.start" class="form-control">
+                            </td>
+                            <td>
+                                <input type="text" mask [maskPatterns]="hourMask" [maxlength]="5" [formControl]="workedDaysFormGroup.controls['monday'].controls.start" class="form-control">
+                            </td>
+                            <td>
+                                <input type="text" mask [maskPatterns]="hourMask" [maxlength]="5" [formControl]="workedDaysFormGroup.controls['monday'].controls.start" class="form-control">
+                            </td>
+                            <td>
+                                <input type="text" mask [maskPatterns]="hourMask" [maxlength]="5" [formControl]="workedDaysFormGroup.controls['monday'].controls.start" class="form-control">
+                            </td>
+                        </tr>
                         </tbody>
                         <button class="btn btn-success">Salvar</button>
                     </form>
                 </div>
             </div>
-
         </div>
     </div>
 </div>

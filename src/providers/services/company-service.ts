@@ -4,6 +4,7 @@ import { Company } from '../../entities/company';
 import { sprintf } from 'sprintf-js';
 import Utils from "../../utils/utils";
 import {User} from '../../entities/user';
+import {promise} from 'selenium-webdriver';
 
 @Injectable()
 export class CompanyServiceProvider{
@@ -60,10 +61,21 @@ export class CompanyServiceProvider{
         });
     }
 
-    deleteCompany(companyId: number): Promise<any>{
+    deleteCompany(companyId: number): Promise<any> {
         return new Promise((resolve, reject) => {
             let companiesPath = sprintf(Utils.END_POINT_COMPANY, companyId);
             this.http.delete(companiesPath).subscribe((result) => {
+                resolve(result);
+            }, (error) => {
+                reject(error);
+            });
+        });
+    }
+
+    updateCompany(companyId: number, data: any): Promise<any> {
+        return new Promise((resolve, reject) => {
+            let companiesPath = sprintf(Utils.END_POINT_COMPANY, companyId);
+            this.http.put(companiesPath, data).subscribe((result) => {
                 resolve(result);
             }, (error) => {
                 reject(error);
