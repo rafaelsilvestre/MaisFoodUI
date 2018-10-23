@@ -32,32 +32,32 @@ export class SettingsPage {
 
         this.workedDaysFormGroup = this.formBuilder.group({
             monday: this.formBuilder.group({
-                start: ["", Validators.minLength(5)],
-                end: ["", Validators.minLength(5)]
+                start: ["", [Validators.required, Validators.minLength(5)]],
+                end: ["", [Validators.required, Validators.minLength(5)]]
             }),
             tuesday: this.formBuilder.group({
-                start: ["", Validators.minLength(5)],
-                end: ["", Validators.minLength(5)]
+                start: ["", [Validators.required, Validators.minLength(5)]],
+                end: ["", [Validators.required, Validators.minLength(5)]]
             }),
             wednesday: this.formBuilder.group({
-                start: ["", Validators.minLength(5)],
-                end: ["", Validators.minLength(5)]
+                start: ["", [Validators.required, Validators.minLength(5)]],
+                end: ["", [Validators.required, Validators.minLength(5)]]
             }),
             thursday: this.formBuilder.group({
-                start: ["", Validators.minLength(5)],
-                end: ["", Validators.minLength(5)]
+                start: ["", [Validators.required, Validators.minLength(5)]],
+                end: ["", [Validators.required, Validators.minLength(5)]]
             }),
             friday: this.formBuilder.group({
-                start: ["", Validators.minLength(5)],
-                end: ["", Validators.minLength(5)]
+                start: ["", [Validators.required, Validators.minLength(5)]],
+                end: ["", [Validators.required, Validators.minLength(5)]]
             }),
             saturday: this.formBuilder.group({
-                start: ["", Validators.minLength(5)],
-                end: ["", Validators.minLength(5)]
+                start: ["", [Validators.required, Validators.minLength(5)]],
+                end: ["", [Validators.required, Validators.minLength(5)]]
             }),
             sunday: this.formBuilder.group({
-                start: ["", Validators.minLength(5)],
-                end: ["", Validators.minLength(5)]
+                start: ["", [Validators.required, Validators.minLength(5)]],
+                end: ["", [Validators.required, Validators.minLength(5)]]
             })
         });
     }
@@ -68,6 +68,16 @@ export class SettingsPage {
         this.settingsFormGroup.controls['name'].setValue(this.company.name);
         this.settingsFormGroup.controls['description'].setValue(this.company.description);
         this.settingsFormGroup.controls['minimumValue'].setValue(new MoneyPipe().transform(this.company.minimumValue));
+    }
+
+    verifyField(e: any): void {
+        if(e.target.value.toString().length != 5){
+            e.target.value = "";
+        }
+    }
+
+    saveWorkedDays(days: any): void {
+        console.log("Days", days);
     }
 
     saveSettings(data): void {

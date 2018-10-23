@@ -5,6 +5,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {ProductServiceProvider} from '../../providers/services/product-service';
 import {CompanyServiceProvider} from '../../providers/services/company-service';
 import {CategoryServiceProvider} from '../../providers/services/category-service';
+import {MoneyPipe} from '../../pipes/money-mask/money-mask';
 
 @Component({
     selector: 'edit-product-page',
@@ -48,7 +49,7 @@ export class EditProductPage {
         this.formGroup.controls['name'].setValue(this.product.name);
         this.formGroup.controls['description'].setValue(this.product.description);
         this.formGroup.controls['category'].setValue(this.product.category.id);
-        this.formGroup.controls['price'].setValue(this.product.price);
+        this.formGroup.controls['price'].setValue(new MoneyPipe().transform(this.product.price));
     }
 
     updateProduct(data): void{
