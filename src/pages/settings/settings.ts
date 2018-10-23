@@ -15,8 +15,8 @@ export class SettingsPage {
     workedDaysFormGroup: FormGroup;
     moneyMask: any = Utils.getMoneyMask();
     hourMask = Utils.getHourMask();
-    intervalOnTheDay: boolean = false;
     company: any;
+    workedDays: Array<any> = [];
 
     constructor(private formBuilder: FormBuilder, private companyService: CompanyServiceProvider){
         this.settingsFormGroup = this.formBuilder.group({
@@ -28,6 +28,13 @@ export class SettingsPage {
         this.companyService.getCompanyByUserLogged().then((company) => {
             this.company = company;
             this.resolveCompanyData();
+
+            this.companyService.getWorkedDays(company.id).then((workedDays) => {
+                this.workedDays = workedDays;
+
+                if(workedDays.length > 0)
+                    this.resolveWorkedDays();
+            }).catch((error) => console.log("Error", error));
         }).catch((error) => console.log("Error", error));
 
         this.workedDaysFormGroup = this.formBuilder.group({
@@ -70,6 +77,50 @@ export class SettingsPage {
         this.settingsFormGroup.controls['minimumValue'].setValue(new MoneyPipe().transform(this.company.minimumValue));
     }
 
+    resolveWorkedDays(): void {
+        let sunday: any = this.workedDaysFormGroup.controls['sunday'];
+        if(sunday && sunday.controls){
+            sunday.controls['start'].setValue(this.workedDays[0].startTime);
+            sunday.controls['end'].setValue(this.workedDays[0].endTime);
+        }
+
+        let monday: any = this.workedDaysFormGroup.controls['monday'];
+        if(monday && monday.controls){
+            monday.controls['start'].setValue(this.workedDays[1].startTime);
+            monday.controls['end'].setValue(this.workedDays[1].endTime);
+        }
+
+        let tuesday: any = this.workedDaysFormGroup.controls['tuesday'];
+        if(tuesday && tuesday.controls){
+            tuesday.controls['start'].setValue(this.workedDays[2].startTime);
+            tuesday.controls['end'].setValue(this.workedDays[2].endTime);
+        }
+
+        let wednesday: any = this.workedDaysFormGroup.controls['wednesday'];
+        if(wednesday && tuesday.controls){
+            wednesday.controls['start'].setValue(this.workedDays[3].startTime);
+            wednesday.controls['end'].setValue(this.workedDays[3].endTime);
+        }
+
+        let thursday: any = this.workedDaysFormGroup.controls['thursday'];
+        if(thursday && thursday.controls){
+            thursday.controls['start'].setValue(this.workedDays[4].startTime);
+            thursday.controls['end'].setValue(this.workedDays[4].endTime);
+        }
+
+        let friday: any = this.workedDaysFormGroup.controls['friday'];
+        if(friday && friday.controls){
+            friday.controls['start'].setValue(this.workedDays[5].startTime);
+            friday.controls['end'].setValue(this.workedDays[5].endTime);
+        }
+
+        let saturday: any = this.workedDaysFormGroup.controls['saturday'];
+        if(saturday && saturday.controls){
+            saturday.controls['start'].setValue(this.workedDays[5].startTime);
+            saturday.controls['end'].setValue(this.workedDays[5].endTime);
+        }
+    }
+
     verifyField(e: any): void {
         if(e.target.value.toString().length != 5){
             e.target.value = "";
@@ -77,7 +128,7 @@ export class SettingsPage {
     }
 
     saveWorkedDays(days: any): void {
-        console.log("Days", days);
+        console.log("WorkedDays", days);
     }
 
     saveSettings(data): void {
@@ -96,4 +147,6 @@ export class SettingsPage {
         }).catch((error) => console.log("Error", error));
         console.log(data);
     }
+
+
 }

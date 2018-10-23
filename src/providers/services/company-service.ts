@@ -82,4 +82,15 @@ export class CompanyServiceProvider{
             });
         });
     }
+
+    getWorkedDays(companyId: number): Promise<any> {
+        return new Promise((resolve, reject) => {
+            let workedDaysPath = sprintf(Utils.END_POINT_COMPANY_WORKED_DAYS, companyId);
+            this.http.get(workedDaysPath).subscribe((result) => {
+                resolve(result);
+            }, (error) => {
+                reject(error);
+            });
+        });
+    }
 }
