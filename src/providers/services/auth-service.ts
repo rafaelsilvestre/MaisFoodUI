@@ -52,7 +52,7 @@ export class AuthServiceProvider{
 
     authUser(data): Promise<any>{
         return new Promise((resolve, reject) => {
-           this.http.post(Utils.END_POINT_AUTH_USER, data, {observe: 'response', responseType: 'text'}).subscribe((result) => {
+           this.http.post(Utils.END_POINT_AUTH_USER, data, {observe: 'response', responseType: 'json'}).subscribe((result: any) => {
                let authValue = result.headers.get('Authorization');
                if(authValue == null){
                    reject();
@@ -63,21 +63,25 @@ export class AuthServiceProvider{
                this.authenticationSuccessfully(authValue);
 
                // Return permissions this user
-               this.userService.getUserPermission().then((permission) => {
-                   if (permission[0] != Permission.ADMIN && permission[0] != Permission.COMPANY){
-                       this.authenticationSuccessfully(null);
-                       this.informLoggedUserToObservers(false);
-                       reject('permission-danied');
-                       return;
-                   }
+               if (result && result.body && (result.body.role != Permission.ADMIN && result.body.role != Permission.COMPANY)){
+                   this.authenticationSuccessfully(null);
+                   this.informLoggedUserToObservers(false);
+                   reject('permission-danied');
+                   return;
+               }
 
-                   // Inform user logged
-                   this.informLoggedUserToObservers(true);
+               // Inform user logged
+               this.informLoggedUserToObservers(true);
 
-                   // Set permission in localStorage
-                   localStorage.setItem('permission', permission[0]);
-                   resolve(result);
-               });
+               // Set permission in localStorage
+               localStorage.setItem('role', result.body.role);
+               localStorage.setItem('user_id', result.body.user_id);
+
+               if(result && result.body && result.body.role === Permission.COMPANY){
+                   localStorage.setItem('company_id', result.body.company_id);
+               }
+
+               resolve(result.body);
            }, (error) => {
                if(error &&  error.status && error.status == 403){
                    reject('account-not-found');
@@ -112,7 +116,9 @@ export class AuthServiceProvider{
 
     logOut() : void{
         localStorage.removeItem('token');
-        localStorage.removeItem('permission');
+        localStorage.removeItem('user_id');
+        localStorage.removeItem('company_id');
+        localStorage.removeItem('role');
         this.isLogged = false;
         this.informLoggedUserToObservers(false);
     }
