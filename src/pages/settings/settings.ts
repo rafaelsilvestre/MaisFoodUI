@@ -189,7 +189,33 @@ export class SettingsPage {
     }
 
     saveWorkedDays(days: any): void {
-        console.log("WorkedDays", days);
+        let workedDays: Array<any> = [];
+        for(let day in days){
+            workedDays.push({
+                day: Number(day),
+                startTime: days[day].start,
+                endTime: days[day].end,
+                enabled: this.workedDays.length == 0 ? true : !days[day].enabled
+            });
+        }
+
+
+        this.companyService.saveWorkedDays(workedDays).then(() => {
+            swal({
+                title: 'Dados salvos com sucesso!',
+                confirmButtonText:  'Ok',
+                showCancelButton: false,
+                showCloseButton: false
+            });
+        }).catch((error) => {
+            let errorMessage = (error && error.error ? error.error.error : "Erro ao salvar dados!");
+            swal({
+                title: errorMessage,
+                confirmButtonText:  'Ok',
+                showCancelButton: false,
+                showCloseButton: false
+            });
+        });
     }
 
     saveSettings(data): void {
@@ -210,12 +236,12 @@ export class SettingsPage {
     }
 
     disableDay(fieldDay: any, isChecked: boolean): void {
-        if(isChecked){
-            fieldDay.controls['start'].disable();
-            fieldDay.controls['end'].disable();
-        }else{
-            fieldDay.controls['start'].enable();
-            fieldDay.controls['end'].enable();
-        }
+        // if(isChecked){
+        //     fieldDay.controls['start'].disable();
+        //     fieldDay.controls['end'].disable();
+        // }else{
+        //     fieldDay.controls['start'].enable();
+        //     fieldDay.controls['end'].enable();
+        // }
     }
 }

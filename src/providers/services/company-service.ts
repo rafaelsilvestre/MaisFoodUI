@@ -93,4 +93,21 @@ export class CompanyServiceProvider{
             });
         });
     }
+
+    saveWorkedDays(workedDays: any): Promise<any> {
+        return new Promise((resolve, reject) => {
+            let companyId = localStorage.getItem("company_id");
+            if(companyId == null){
+                reject();
+                return;
+            }
+
+            let workedDaysPath = sprintf(Utils.END_POINT_COMPANY_WORKED_DAYS, companyId);
+            this.http.post(workedDaysPath, workedDays).subscribe((result) => {
+                resolve(result);
+            }, (error) => {
+                reject(error);
+            });
+        });
+    }
 }
