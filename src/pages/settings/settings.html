@@ -49,60 +49,95 @@
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <td class="text-center">Segunda</td>
-                                    <td class="text-center">Terça</td>
-                                    <td class="text-center">Quarta</td>
-                                    <td class="text-center">Quinta</td>
-                                    <td class="text-center">Sexta</td>
-                                    <td class="text-center">Sábado</td>
-                                    <td class="text-center">Domingo</td>
+                                    <td>
+                                        <span class="pull-left" style="font-weight: bold;">
+                                            <input type="checkbox" [formControl]="workedDaysFormGroup.controls['1'].controls['enabled']" (change)="disableDay(workedDaysFormGroup.controls['1'], workedDaysFormGroup.controls['1'].controls['enabled'].value)">
+                                        Segunda
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span class="pull-left" style="font-weight: bold;">
+                                            <input type="checkbox" [formControl]="workedDaysFormGroup.controls['2'].controls['enabled']" (change)="disableDay(workedDaysFormGroup.controls['2'], workedDaysFormGroup.controls['2'].controls['enabled'].value)">
+                                            Terça
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span class="pull-left" style="font-weight: bold;">
+                                            <input type="checkbox" [formControl]="workedDaysFormGroup.controls['3'].controls['enabled']" (change)="disableDay(workedDaysFormGroup.controls['3'], workedDaysFormGroup.controls['3'].controls['enabled'].value)">
+                                            Quarta
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span class="pull-left" style="font-weight: bold;">
+                                            <input type="checkbox" [formControl]="workedDaysFormGroup.controls['4'].controls['enabled']" (change)="disableDay(workedDaysFormGroup.controls['4'], workedDaysFormGroup.controls['4'].controls['enabled'].value)">
+                                            Quinta
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span class="pull-left" style="font-weight: bold;">
+                                            <input type="checkbox" [formControl]="workedDaysFormGroup.controls['5'].controls['enabled']" (change)="disableDay(workedDaysFormGroup.controls['5'], workedDaysFormGroup.controls['5'].controls['enabled'].value)">
+                                            Sexta
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span class="pull-left" style="font-weight: bold;">
+                                            <input type="checkbox" [formControl]="workedDaysFormGroup.controls['6'].controls['enabled']" (change)="disableDay(workedDaysFormGroup.controls['6'], workedDaysFormGroup.controls['6'].controls['enabled'].value)">
+                                            Sábado
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span class="pull-left" style="font-weight: bold;">
+                                            <input type="checkbox" [formControl]="workedDaysFormGroup.controls['0'].controls['enabled']" (change)="disableDay(workedDaysFormGroup.controls['0'], workedDaysFormGroup.controls['0'].controls['enabled'].value)">
+                                            Domingo
+                                        </span>
+                                    </td>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
                                     <td>
-                                        <input type="text" mask [maskPatterns]="hourMask" [maxlength]="5" [formControl]="workedDaysFormGroup.controls['monday'].controls['start']" (focusout)="verifyField($event)" placeholder="hh:mm" class="form-control">
+                                        <input type="text" mask [maskPatterns]="hourMask" [maxlength]="5" [formControl]="workedDaysFormGroup.controls['1'].controls['start']" (focusout)="verifyField($event)" placeholder="hh:mm" class="form-control">
                                     </td>
                                     <td>
-                                        <input type="text" mask [maskPatterns]="hourMask" [maxlength]="5" [formControl]="workedDaysFormGroup.controls['tuesday'].controls['start']" (focusout)="verifyField($event)" placeholder="hh:mm" class="form-control">
+                                        <input type="text" mask [maskPatterns]="hourMask" [maxlength]="5" [formControl]="workedDaysFormGroup.controls['2'].controls['start']" (focusout)="verifyField($event)" placeholder="hh:mm" class="form-control">
                                     </td>
                                     <td>
-                                        <input type="text" mask [maskPatterns]="hourMask" [maxlength]="5" [formControl]="workedDaysFormGroup.controls['wednesday'].controls['start']" (focusout)="verifyField($event)" placeholder="hh:mm" class="form-control">
+                                        <input type="text" mask [maskPatterns]="hourMask" [maxlength]="5" [formControl]="workedDaysFormGroup.controls['3'].controls['start']" (focusout)="verifyField($event)" placeholder="hh:mm" class="form-control">
                                     </td>
                                     <td>
-                                        <input type="text" mask [maskPatterns]="hourMask" [maxlength]="5" [formControl]="workedDaysFormGroup.controls['thursday'].controls['start']" (focusout)="verifyField($event)" placeholder="hh:mm" class="form-control">
+                                        <input type="text" mask [maskPatterns]="hourMask" [maxlength]="5" [formControl]="workedDaysFormGroup.controls['4'].controls['start']" (focusout)="verifyField($event)" placeholder="hh:mm" class="form-control">
                                     </td>
                                     <td>
-                                        <input type="text" mask [maskPatterns]="hourMask" [maxlength]="5" [formControl]="workedDaysFormGroup.controls['friday'].controls['start']" (focusout)="verifyField($event)" placeholder="hh:mm" class="form-control">
+                                        <input type="text" mask [maskPatterns]="hourMask" [maxlength]="5" [formControl]="workedDaysFormGroup.controls['5'].controls['start']" (focusout)="verifyField($event)" placeholder="hh:mm" class="form-control">
                                     </td>
                                     <td>
-                                        <input type="text" mask [maskPatterns]="hourMask" [maxlength]="5" [formControl]="workedDaysFormGroup.controls['saturday'].controls['start']" (focusout)="verifyField($event)" placeholder="hh:mm" class="form-control">
+                                        <input type="text" mask [maskPatterns]="hourMask" [maxlength]="5" [formControl]="workedDaysFormGroup.controls['6'].controls['start']" (focusout)="verifyField($event)" placeholder="hh:mm" class="form-control">
                                     </td>
                                     <td>
-                                        <input type="text" mask [maskPatterns]="hourMask" [maxlength]="5" [formControl]="workedDaysFormGroup.controls['sunday'].controls['start']" (focusout)="verifyField($event)" placeholder="hh:mm" class="form-control">
+                                        <input type="text" mask [maskPatterns]="hourMask" [maxlength]="5" [formControl]="workedDaysFormGroup.controls['0'].controls['start']" (focusout)="verifyField($event)" placeholder="hh:mm" class="form-control">
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>
-                                        <input type="text" mask [maskPatterns]="hourMask" [maxlength]="5" [formControl]="workedDaysFormGroup.controls['monday'].controls['end']" (focusout)="verifyField($event)" placeholder="hh:mm" class="form-control">
+                                        <input type="text" mask [maskPatterns]="hourMask" [maxlength]="5" [formControl]="workedDaysFormGroup.controls['1'].controls['end']" (focusout)="verifyField($event)" placeholder="hh:mm" class="form-control">
                                     </td>
                                     <td>
-                                        <input type="text" mask [maskPatterns]="hourMask" [maxlength]="5" [formControl]="workedDaysFormGroup.controls['tuesday'].controls['end']" (focusout)="verifyField($event)" placeholder="hh:mm" class="form-control">
+                                        <input type="text" mask [maskPatterns]="hourMask" [maxlength]="5" [formControl]="workedDaysFormGroup.controls['2'].controls['end']" (focusout)="verifyField($event)" placeholder="hh:mm" class="form-control">
                                     </td>
                                     <td>
-                                        <input type="text" mask [maskPatterns]="hourMask" [maxlength]="5" [formControl]="workedDaysFormGroup.controls['wednesday'].controls['end']" (focusout)="verifyField($event)" placeholder="hh:mm" class="form-control">
+                                        <input type="text" mask [maskPatterns]="hourMask" [maxlength]="5" [formControl]="workedDaysFormGroup.controls['3'].controls['end']" (focusout)="verifyField($event)" placeholder="hh:mm" class="form-control">
                                     </td>
                                     <td>
-                                        <input type="text" mask [maskPatterns]="hourMask" [maxlength]="5" [formControl]="workedDaysFormGroup.controls['thursday'].controls['end']"(focusout)="verifyField($event)" placeholder="hh:mm" class="form-control">
+                                        <input type="text" mask [maskPatterns]="hourMask" [maxlength]="5" [formControl]="workedDaysFormGroup.controls['4'].controls['end']" (focusout)="verifyField($event)" placeholder="hh:mm" class="form-control">
                                     </td>
                                     <td>
-                                        <input type="text" mask [maskPatterns]="hourMask" [maxlength]="5" [formControl]="workedDaysFormGroup.controls['friday'].controls['end']" (focusout)="verifyField($event)" placeholder="hh:mm" class="form-control">
+                                        <input type="text" mask [maskPatterns]="hourMask" [maxlength]="5" [formControl]="workedDaysFormGroup.controls['5'].controls['end']" (focusout)="verifyField($event)" placeholder="hh:mm" class="form-control">
                                     </td>
                                     <td>
-                                        <input type="text" mask [maskPatterns]="hourMask" [maxlength]="5" [formControl]="workedDaysFormGroup.controls['saturday'].controls['end']" (focusout)="verifyField($event)" placeholder="hh:mm" class="form-control">
+                                        <input type="text" mask [maskPatterns]="hourMask" [maxlength]="5" [formControl]="workedDaysFormGroup.controls['6'].controls['end']" (focusout)="verifyField($event)" placeholder="hh:mm" class="form-control">
                                     </td>
                                     <td>
-                                        <input type="text" mask [maskPatterns]="hourMask" [maxlength]="5" [formControl]="workedDaysFormGroup.controls['sunday'].controls['end']" (focusout)="verifyField($event)" placeholder="hh:mm" class="form-control">
+                                        <input type="text" mask [maskPatterns]="hourMask" [maxlength]="5" [formControl]="workedDaysFormGroup.controls['0'].controls['end']" (focusout)="verifyField($event)" placeholder="hh:mm" class="form-control">
                                     </td>
                                 </tr>
                             </tbody>

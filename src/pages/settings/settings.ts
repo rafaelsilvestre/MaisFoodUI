@@ -3,6 +3,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import Utils from '../../utils/utils';
 import { CompanyServiceProvider } from '../../providers/services/company-service';
 import {MoneyPipe} from '../../pipes/money-mask/money-mask';
+import { TypeDay } from '../../enums/type-day';
 import swal from "sweetalert2";
 
 @Component({
@@ -31,40 +32,45 @@ export class SettingsPage {
 
             this.companyService.getWorkedDays(company.id).then((workedDays) => {
                 this.workedDays = workedDays;
-
-                if(workedDays.length > 0)
-                    this.resolveWorkedDays();
+                this.resolveWorkedDays();
             }).catch((error) => console.log("Error", error));
         }).catch((error) => console.log("Error", error));
 
         this.workedDaysFormGroup = this.formBuilder.group({
-            monday: this.formBuilder.group({
+            '0': this.formBuilder.group({
                 start: ["", [Validators.required, Validators.minLength(5)]],
-                end: ["", [Validators.required, Validators.minLength(5)]]
+                end: ["", [Validators.required, Validators.minLength(5)]],
+                enabled: [false]
             }),
-            tuesday: this.formBuilder.group({
+            '1': this.formBuilder.group({
                 start: ["", [Validators.required, Validators.minLength(5)]],
-                end: ["", [Validators.required, Validators.minLength(5)]]
+                end: ["", [Validators.required, Validators.minLength(5)]],
+                enabled: [false]
             }),
-            wednesday: this.formBuilder.group({
+            '2': this.formBuilder.group({
                 start: ["", [Validators.required, Validators.minLength(5)]],
-                end: ["", [Validators.required, Validators.minLength(5)]]
+                end: ["", [Validators.required, Validators.minLength(5)]],
+                enabled: [false]
             }),
-            thursday: this.formBuilder.group({
+            '3': this.formBuilder.group({
                 start: ["", [Validators.required, Validators.minLength(5)]],
-                end: ["", [Validators.required, Validators.minLength(5)]]
+                end: ["", [Validators.required, Validators.minLength(5)]],
+                enabled: [false]
             }),
-            friday: this.formBuilder.group({
+            '4': this.formBuilder.group({
                 start: ["", [Validators.required, Validators.minLength(5)]],
-                end: ["", [Validators.required, Validators.minLength(5)]]
+                end: ["", [Validators.required, Validators.minLength(5)]],
+                enabled: [false]
             }),
-            saturday: this.formBuilder.group({
+            '5': this.formBuilder.group({
                 start: ["", [Validators.required, Validators.minLength(5)]],
-                end: ["", [Validators.required, Validators.minLength(5)]]
+                end: ["", [Validators.required, Validators.minLength(5)]],
+                enabled: [false]
             }),
-            sunday: this.formBuilder.group({
+            '6': this.formBuilder.group({
                 start: ["", [Validators.required, Validators.minLength(5)]],
-                end: ["", [Validators.required, Validators.minLength(5)]]
+                end: ["", [Validators.required, Validators.minLength(5)]],
+                enabled: [false]
             })
         });
     }
@@ -78,47 +84,102 @@ export class SettingsPage {
     }
 
     resolveWorkedDays(): void {
-        let sunday: any = this.workedDaysFormGroup.controls['sunday'];
-        if(sunday && sunday.controls){
-            sunday.controls['start'].setValue(this.workedDays[0].startTime);
-            sunday.controls['end'].setValue(this.workedDays[0].endTime);
+        let sunday: any = this.workedDaysFormGroup.controls['0'];
+        let monday: any = this.workedDaysFormGroup.controls['1'];
+        let tuesday: any = this.workedDaysFormGroup.controls['2'];
+        let wednesday: any = this.workedDaysFormGroup.controls['3'];
+        let thursday: any = this.workedDaysFormGroup.controls['4'];
+        let friday: any = this.workedDaysFormGroup.controls['5'];
+        let saturday: any = this.workedDaysFormGroup.controls['6'];
+
+        if(this.workedDays.length == 0){
+            sunday.controls['enabled'].disable();
+            monday.controls['enabled'].disable();
+            tuesday.controls['enabled'].disable();
+            wednesday.controls['enabled'].disable();
+            thursday.controls['enabled'].disable();
+            friday.controls['enabled'].disable();
+            saturday.controls['enabled'].disable();
         }
 
-        let monday: any = this.workedDaysFormGroup.controls['monday'];
-        if(monday && monday.controls){
-            monday.controls['start'].setValue(this.workedDays[1].startTime);
-            monday.controls['end'].setValue(this.workedDays[1].endTime);
-        }
+        this.workedDays.forEach((workedDay: any) => {
+            if(workedDay.day == TypeDay.SUNDAY){
+                if(sunday && sunday.controls){
+                    sunday.controls['start'].setValue(workedDay.startTime);
+                    sunday.controls['end'].setValue(workedDay.endTime);
+                    if(!workedDay.enabled){
+                        this.disableDay(sunday, !workedDay.enabled);
+                        sunday.controls['enabled'].setValue(true);
+                    }
+                }
+            }
 
-        let tuesday: any = this.workedDaysFormGroup.controls['tuesday'];
-        if(tuesday && tuesday.controls){
-            tuesday.controls['start'].setValue(this.workedDays[2].startTime);
-            tuesday.controls['end'].setValue(this.workedDays[2].endTime);
-        }
+            if(workedDay.day == TypeDay.MONDAY){
+                if(monday && monday.controls){
+                    monday.controls['start'].setValue(workedDay.startTime);
+                    monday.controls['end'].setValue(workedDay.endTime);
+                    if(!workedDay.enabled){
+                        this.disableDay(monday, !workedDay.enabled);
+                        monday.controls['enabled'].setValue(true);
+                    }
+                }
+            }
 
-        let wednesday: any = this.workedDaysFormGroup.controls['wednesday'];
-        if(wednesday && tuesday.controls){
-            wednesday.controls['start'].setValue(this.workedDays[3].startTime);
-            wednesday.controls['end'].setValue(this.workedDays[3].endTime);
-        }
+            if(workedDay.day == TypeDay.TUESDAY){
+                if(tuesday && tuesday.controls){
+                    tuesday.controls['start'].setValue(workedDay.startTime);
+                    tuesday.controls['end'].setValue(workedDay.endTime);
+                    if(!workedDay.enabled){
+                        this.disableDay(tuesday, !workedDay.enabled);
+                        tuesday.controls['enabled'].setValue(true);
+                    }
+                }
+            }
 
-        let thursday: any = this.workedDaysFormGroup.controls['thursday'];
-        if(thursday && thursday.controls){
-            thursday.controls['start'].setValue(this.workedDays[4].startTime);
-            thursday.controls['end'].setValue(this.workedDays[4].endTime);
-        }
+            if(workedDay.day == TypeDay.WEDNESDAY){
+                if(wednesday && wednesday.controls){
+                    wednesday.controls['start'].setValue(workedDay.startTime);
+                    wednesday.controls['end'].setValue(workedDay.endTime);
+                    if(!workedDay.enabled){
+                        this.disableDay(wednesday, !workedDay.enabled);
+                        wednesday.controls['enabled'].setValue(true);
+                    }
+                }
+            }
 
-        let friday: any = this.workedDaysFormGroup.controls['friday'];
-        if(friday && friday.controls){
-            friday.controls['start'].setValue(this.workedDays[5].startTime);
-            friday.controls['end'].setValue(this.workedDays[5].endTime);
-        }
+            if(workedDay.day == TypeDay.THURSDAY){
+                if(thursday && thursday.controls){
+                    thursday.controls['start'].setValue(workedDay.startTime);
+                    thursday.controls['end'].setValue(workedDay.endTime);
+                    if(!workedDay.enabled){
+                        this.disableDay(thursday, !workedDay.enabled);
+                        thursday.controls['enabled'].setValue(true);
+                    }
+                }
+            }
 
-        let saturday: any = this.workedDaysFormGroup.controls['saturday'];
-        if(saturday && saturday.controls){
-            saturday.controls['start'].setValue(this.workedDays[5].startTime);
-            saturday.controls['end'].setValue(this.workedDays[5].endTime);
-        }
+            if(workedDay.day == TypeDay.FRIDAY){
+                if(friday && friday.controls){
+                    friday.controls['start'].setValue(workedDay.startTime);
+                    friday.controls['end'].setValue(workedDay.endTime);
+                    if(!workedDay.enabled){
+                        this.disableDay(friday, !workedDay.enabled);
+                        friday.controls['enabled'].setValue(true);
+                    }
+                }
+            }
+
+            if(workedDay.day == TypeDay.SATURDAY){
+                if(saturday && saturday.controls){
+                    saturday.controls['start'].setValue(workedDay.startTime);
+                    saturday.controls['end'].setValue(workedDay.endTime);
+                    if(!workedDay.enabled){
+                        this.disableDay(saturday, !workedDay.enabled);
+                        saturday.controls['enabled'].setValue(true);
+                    }
+                }
+            }
+        });
     }
 
     verifyField(e: any): void {
@@ -148,5 +209,13 @@ export class SettingsPage {
         console.log(data);
     }
 
-
+    disableDay(fieldDay: any, isChecked: boolean): void {
+        if(isChecked){
+            fieldDay.controls['start'].disable();
+            fieldDay.controls['end'].disable();
+        }else{
+            fieldDay.controls['start'].enable();
+            fieldDay.controls['end'].enable();
+        }
+    }
 }
