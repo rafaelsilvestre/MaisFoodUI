@@ -106,27 +106,27 @@
                                         </fieldset>
                                     </td>
                                     <td>
-                                        <fieldset>
+                                        <fieldset [disabled]="workedDaysFormGroup.controls['3'].controls['enabled'].value">
                                             <input type="text" mask [maskPatterns]="hourMask" [maxlength]="5" [formControl]="workedDaysFormGroup.controls['3'].controls['start']" (focusout)="verifyField($event)" placeholder="hh:mm" class="form-control">
                                         </fieldset>
                                     </td>
                                     <td>
-                                        <fieldset>
+                                        <fieldset [disabled]="workedDaysFormGroup.controls['4'].controls['enabled'].value">
                                             <input type="text" mask [maskPatterns]="hourMask" [maxlength]="5" [formControl]="workedDaysFormGroup.controls['4'].controls['start']" (focusout)="verifyField($event)" placeholder="hh:mm" class="form-control">
                                         </fieldset>
                                     </td>
                                     <td>
-                                        <fieldset>
+                                        <fieldset [disabled]="workedDaysFormGroup.controls['5'].controls['enabled'].value">
                                             <input type="text" mask [maskPatterns]="hourMask" [maxlength]="5" [formControl]="workedDaysFormGroup.controls['5'].controls['start']" (focusout)="verifyField($event)" placeholder="hh:mm" class="form-control">
                                         </fieldset>
                                     </td>
                                     <td>
-                                        <fieldset>
+                                        <fieldset [disabled]="workedDaysFormGroup.controls['6'].controls['enabled'].value">
                                             <input type="text" mask [maskPatterns]="hourMask" [maxlength]="5" [formControl]="workedDaysFormGroup.controls['6'].controls['start']" (focusout)="verifyField($event)" placeholder="hh:mm" class="form-control">
                                         </fieldset>
                                     </td>
                                     <td>
-                                        <fieldset>
+                                        <fieldset [disabled]="workedDaysFormGroup.controls['0'].controls['enabled'].value">
                                             <input type="text" mask [maskPatterns]="hourMask" [maxlength]="5" [formControl]="workedDaysFormGroup.controls['0'].controls['start']" (focusout)="verifyField($event)" placeholder="hh:mm" class="form-control">
                                         </fieldset>
                                     </td>
