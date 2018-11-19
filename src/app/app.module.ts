@@ -26,6 +26,7 @@ import { CategoriesPage } from '../pages/categories/categories';
 import { MyOrdersPage } from '../pages/my-orders/my-orders';
 import { CreateCategoryPage } from '../pages/create-category/create-category';
 import { EditProductPage } from '../pages/edit-product/edit-product';
+import { EditCompanyPage } from '../pages/edit-company/edit-company';
 
 import { InputMaskDirective } from '../directives/input-mask/input-mask';
 
@@ -66,6 +67,7 @@ import { AuthGuard } from '../providers/guards/auth-guard';
         MyOrdersPage,
         CreateCategoryPage,
         EditProductPage,
+        EditCompanyPage,
         // Directives
         InputMaskDirective,
         // Pipes

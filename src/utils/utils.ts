@@ -16,6 +16,8 @@ export default class Utils {
     public static END_POINT_COMPANY = Utils.END_POINT_COMPANIES + "/%s";
     public static END_POINT_COMPANY_DATA_USER_LOGGED = Utils.END_POINT_COMPANIES + "/data";
 
+    public static END_POINT_COMPANY_IMAGE = Utils.END_POINT_BASE_URL + "/upload/company/%s";
+
     // WORKED DAYS
     public static END_POINT_WORKED_DAYS = Utils.END_POINT_BASE_URL + "/worked_day";
     public static END_POINT_COMPANY_WORKED_DAYS = Utils.END_POINT_WORKED_DAYS + "/%s";

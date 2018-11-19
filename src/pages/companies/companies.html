@@ -29,7 +29,7 @@
                             <td>{{ company.id }}</td>
                             <td>
                                 <a href="javascript:void(0);" [routerLink]="['/company', company.id]">
-                                    <img src="https://picsum.photos/200/200" class="avatar" alt="Avatar">
+                                    <img [src]="company.image ? company.image : 'https://picsum.photos/200/200'" class="avatar" alt="Avatar">
                                     {{ company?.name }}
                                 </a>
                             </td>
@@ -37,7 +37,7 @@
                             <td>{{ company?.minimumValue | money }}</td>
                             <td><span class="status text-success">&bull;</span> Ativo</td>
                             <td>
-                                <a href="javascript:void(0);" class="settings" (click)="editCompany(company.id, i)" title="Editar" data-toggle="tooltip"><i class="glyphicon glyphicon-cog"></i></a>
+                                <a href="javascript:void(0);" class="settings" [routerLink]="['/company/edit', company.id]" title="Editar" data-toggle="tooltip"><i class="glyphicon glyphicon-cog"></i></a>
                                 <a href="javascript:void(0);" class="delete" (click)="deleteCompany(company.id, i)" title="Apagar" data-toggle="tooltip"><i class="glyphicon glyphicon-trash"></i></a>
                             </td>
                         </tr>

@@ -1,10 +1,9 @@
 import { Injectable } from "@angular/core";
-import { HttpClient } from '@angular/common/http';
+import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import { Company } from '../../entities/company';
 import { sprintf } from 'sprintf-js';
 import Utils from "../../utils/utils";
 import {User} from '../../entities/user';
-import {promise} from 'selenium-webdriver';
 
 @Injectable()
 export class CompanyServiceProvider{
@@ -32,7 +31,7 @@ export class CompanyServiceProvider{
             companyName: formData.name,
             description: formData.description,
             minimumValue: Number(formData.minimum_value),
-            image: 'https://3.kekantoimg.com/qBML1ugEVRfkSgoK4DJ5p-HanPI=/300x300/s3.amazonaws.com/kekanto_pics/pics/211/857211.jpg',
+            image: '',
             // User data
             categories: formData.categories,
             ownerName: formData.name_owner,
@@ -45,6 +44,32 @@ export class CompanyServiceProvider{
             let companiesPath = Utils.END_POINT_COMPANIES;
             this.http.post(companiesPath, data).subscribe((result) => {
                 resolve(result);
+            }, (error) => {
+                reject(error);
+            })
+        });
+    }
+
+    saveImageCompany(file: any, companyId: number): Promise<any> {
+        return new Promise((resolve, reject) => {
+            let companiesPath = sprintf(Utils.END_POINT_COMPANY_IMAGE, companyId);
+
+            let formData: FormData = new FormData();
+            formData.set('file', file, file.name);
+
+            this.http.post(companiesPath, formData).subscribe((result) => {
+                resolve(result);
+            }, (error) => {
+                reject(error);
+            })
+        });
+    }
+
+    getCompanyById(companyId: number): Promise<any> {
+        return new Promise((resolve, reject) => {
+            let companyPath = sprintf(Utils.END_POINT_COMPANY, companyId);
+            this.http.get(companyPath).subscribe((company) => {
+                resolve(company);
             }, (error) => {
                 reject(error);
             })

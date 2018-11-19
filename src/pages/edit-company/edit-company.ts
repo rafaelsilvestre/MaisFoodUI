@@ -1,22 +1,24 @@
 import {Component, ElementRef, ViewChild} from '@angular/core';
-import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
-import { Router } from '@angular/router';
-import { CompanyServiceProvider } from '../../providers/services/company-service';
-import { FilterServiceProvider } from '../../providers/services/filter-service';
-import { Filter } from '../../entities/filter';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import Utils from '../../utils/utils';
+import {Filter} from '../../entities/filter';
+import {CompanyServiceProvider} from '../../providers/services/company-service';
+import {ActivatedRoute, Router} from '@angular/router';
+import {FilterServiceProvider} from '../../providers/services/filter-service';
 import swal from "sweetalert2";
+import {MoneyPipe} from '../../pipes/money-mask/money-mask';
 
 @Component({
-    selector: 'create-company-page',
-    templateUrl: './create-company.html',
-    styleUrls: ['./create-company.css']
+    selector: 'edit-company-page',
+    templateUrl: './edit-company.html',
+    styleUrls: ['./edit-company.css']
 })
-export class CreateCompanyPage {
+export class EditCompanyPage {
     @ViewChild('image') companyImage: ElementRef;
     formGroup: FormGroup;
     moneyMask: any = Utils.getMoneyMask();
-    fileImage: any;
+    fileImage: any = null;
+    company: any;
 
     filters: Array<Filter> = [];
     filtersChecked: Array<number> = [];
@@ -24,18 +26,23 @@ export class CreateCompanyPage {
     filterSecondColumn: Array<Filter> = [];
 
     constructor(private formBuilder: FormBuilder, private companyService: CompanyServiceProvider,
-                private router: Router, private filterService: FilterServiceProvider) {
+                private router: Router, private filterService: FilterServiceProvider,
+                private route: ActivatedRoute) {
 
         this.formGroup = this.formBuilder.group({
             name: ['', [Validators.required]],
             description: ['', Validators.required],
             minimum_value: ['', [Validators.required]],
-            file: ['', [Validators.required]],
-            // owner
-            name_owner: ['', [Validators.required]],
-            lastname_owner: ['', [Validators.required]],
-            email: ['', [Validators.required]],
-            password: ['', [Validators.required]]
+            file: ['', [Validators.required]]
+        });
+
+        this.route.params.subscribe(params => {
+            if (params.hasOwnProperty("id")) {
+                this.companyService.getCompanyById( params["id"]).then((company) => {
+                    this.company = company;
+                    this.resolveCompanyData();
+                }).catch((error) => console.log('Error', error));
+            }
         });
 
         this.filterService.getAllFilters().then((filters) => {
@@ -60,6 +67,18 @@ export class CreateCompanyPage {
 
     inflateViewInit() {}
 
+    resolveCompanyData(): void {
+        this.formGroup.controls['name'].setValue(this.company && this.company.name ? this.company.name : '');
+        this.formGroup.controls['description'].setValue(this.company && this.company.description ? this.company.description : '')
+        this.formGroup.controls['minimum_value'].setValue(this.company && this.company.minimumValue ? new MoneyPipe().transform(this.company.minimumValue) : '');
+
+        if(this.company && this.company.image){
+            this.companyImage.nativeElement.style.backgroundImage = "url(" + this.company.image + ")";
+            this.formGroup.controls['file'].setValidators([]);
+            this.formGroup.controls['file'].updateValueAndValidity();
+        }
+    }
+
     saveCompany(formData: any): void {
         formData.minimum_value = formData.minimum_value.replace('R$ ', '').replace(',', '.');
 
@@ -70,12 +89,21 @@ export class CreateCompanyPage {
             formData.categories.push(this.filters[i]);
         });
 
-        this.companyService.saveCompany(formData).then((result) => {
-            console.log('Company', );
+        let data = {
+            companyName: formData.name,
+            description: formData.description,
+            minimumValue: Number(formData.minimum_value),
+        };
+
+        this.companyService.updateCompany(this.company.id, data).then((result) => {
             if(result.id != null){
-                this.companyService.saveImageCompany(this.fileImage, result.id).then(() => {
+                if(this.fileImage != null){
+                    this.companyService.saveImageCompany(this.fileImage, result.id).then(() => {
+                        this.router.navigate(['/companies']);
+                    }).catch((error) => console.log('Error', error));
+                }else{
                     this.router.navigate(['/companies']);
-                }).catch((error) => console.log('Error', error));
+                }
             }
         }).catch((error) => console.log("Error", error));
     }
@@ -116,3 +144,5 @@ export class CreateCompanyPage {
         }
     }
 }
+
+
