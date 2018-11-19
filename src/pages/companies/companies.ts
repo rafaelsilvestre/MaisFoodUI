@@ -23,10 +23,6 @@ export class CompaniesPage {
         });
     }
 
-    editCompany(): void{
-        console.log("Editar Empresa");
-    }
-
     deleteCompany(companyId: number, companyIndex: number): void{
         swal({
             title: 'Deseja apagar esta empresa?',

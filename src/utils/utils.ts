@@ -1,6 +1,8 @@
+import * as environment from '../environments/environment';
+
 export default class Utils {
 
-    public static END_POINT_BASE_URL = "http://localhost:8080";
+    public static END_POINT_BASE_URL = environment.environment.url;
 
     // USERS
     public static END_POINT_USERS = Utils.END_POINT_BASE_URL + "/user";

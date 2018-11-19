@@ -32,7 +32,9 @@
                                     {{ user?.name + ' ' + user.lastName }}
                                 </a>
                             </td>
-                            <td>Admin</td>
+                            <td>
+                                <span class="label label-success">{{ user.permissions[0] | permission }}</span>
+                            </td>
                             <td><span class="status text-success">&bull;</span> Active</td>
                             <td>
                                 <a href="#" class="settings" title="Settings" data-toggle="tooltip"><i class="glyphicon glyphicon-cog"></i></a>

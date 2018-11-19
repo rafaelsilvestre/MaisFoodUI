@@ -31,6 +31,7 @@ import { EditCompanyPage } from '../pages/edit-company/edit-company';
 import { InputMaskDirective } from '../directives/input-mask/input-mask';
 
 import { MoneyPipe } from '../pipes/money-mask/money-mask';
+import { PermissionConverterPipe } from '../pipes/permission-converter/permission-converter';
 
 import { UserServiceProvider } from '../providers/services/user-service';
 import { AuthServiceProvider } from '../providers/services/auth-service';
@@ -71,7 +72,8 @@ import { AuthGuard } from '../providers/guards/auth-guard';
         // Directives
         InputMaskDirective,
         // Pipes
-        MoneyPipe
+        MoneyPipe,
+        PermissionConverterPipe
     ],
     imports: [
         BrowserModule,
