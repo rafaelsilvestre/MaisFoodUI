@@ -67,4 +67,19 @@ export class ProductServiceProvider{
             });
         });
     }
+
+    saveImageProduct(file: any, productId: number): Promise<any> {
+        return new Promise((resolve, reject) => {
+            let companiesPath = sprintf(Utils.END_POINT_PRODUCT_IMAGE, productId);
+
+            let formData: FormData = new FormData();
+            formData.set('file', file, file.name);
+
+            this.http.post(companiesPath, formData).subscribe((result) => {
+                resolve(result);
+            }, (error) => {
+                reject(error);
+            })
+        });
+    }
 }

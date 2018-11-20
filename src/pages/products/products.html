@@ -29,7 +29,7 @@
                         <td>{{ product?.id }}</td>
                         <td>
                             <a href="javascript:void(0);" [routerLink]="['/company', product.id]">
-                                <img src="https://picsum.photos/200/200" class="avatar" alt="Avatar">
+                                <img [src]="product && product.image ? product.image : 'https://picsum.photos/200/200'" class="avatar" alt="Avatar">
                                 {{ product?.name }}
                             </a>
                         </td>
@@ -42,7 +42,7 @@
                         </td>
                     </tr>
                     <tr *ngIf="products.length == 0">
-                        <td colspan="6" align="center">Nenhum produto encontrado!</td> 
+                        <td colspan="6" align="center">Nenhum produto encontrado!</td>
                     </tr>
                     </tbody>
                 </table>

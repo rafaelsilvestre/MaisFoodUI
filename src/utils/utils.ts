@@ -33,6 +33,8 @@ export default class Utils {
     public static END_POINT_PRODUCT = Utils.END_POINT_PRODUCTS + "/%s";
     public static END_POINT_PRODUCT_DATA = Utils.END_POINT_PRODUCT + "/data";
 
+    public static END_POINT_PRODUCT_IMAGE = Utils.END_POINT_BASE_URL + "/upload/product/%s";
+
     // AUTH
     public static END_POINT_AUTH_USER = Utils.END_POINT_BASE_URL + "/login";
 
