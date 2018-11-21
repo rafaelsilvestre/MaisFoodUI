@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {FormArray, FormBuilder, FormGroup, Validators} from '@angular/forms';
 import Utils from '../../utils/utils';
 import { CompanyServiceProvider } from '../../providers/services/company-service';
 import {MoneyPipe} from '../../pipes/money-mask/money-mask';
@@ -243,5 +243,9 @@ export class SettingsPage {
         //     fieldDay.controls['start'].enable();
         //     fieldDay.controls['end'].enable();
         // }
+    }
+
+    get formData() {
+        return <FormArray>this.workedDaysFormGroup.get('1');
     }
 }

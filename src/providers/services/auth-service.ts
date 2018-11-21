@@ -5,20 +5,15 @@ import { UserServiceProvider } from './user-service';
 import { Observable, Subscription } from 'rxjs';
 import Utils from '../../utils/utils';
 import {Permission} from '../../enums/permition';
-import {reject} from 'q';
 import {User} from '../../entities/user';
-import {JwtHelper} from 'angular2-jwt';
 
 @Injectable()
 export class AuthServiceProvider{
     isLogged: boolean = false;
     userToken: string;
-    jwtHelper: JwtHelper = new JwtHelper();
 
     loggedUserObservable: Observable<boolean>;
     loggedUserObservers: Array<Subscription> = [];
-
-
 
     constructor(private http: HttpClient, private userService: UserServiceProvider){
         const currentToken = localStorage.getItem('token');
