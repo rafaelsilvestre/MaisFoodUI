@@ -17,6 +17,7 @@ export default class Utils {
     public static END_POINT_COMPANIES = Utils.END_POINT_BASE_URL + "/company";
     public static END_POINT_COMPANY = Utils.END_POINT_COMPANIES + "/%s";
     public static END_POINT_COMPANY_DATA_USER_LOGGED = Utils.END_POINT_COMPANIES + "/data";
+    public static END_POINT_COMPANIES_BY_DISTRICT = Utils.END_POINT_COMPANIES + "/district/%s";
 
     public static END_POINT_COMPANY_IMAGE = Utils.END_POINT_BASE_URL + "/upload/company/%s";
 
@@ -26,6 +27,10 @@ export default class Utils {
 
     // CATEGORIES
     public static END_POINT_CATEGORIES = Utils.END_POINT_BASE_URL + "/category";
+
+    // DISTRICTS
+    public static END_POINT_DISTRICTS = Utils.END_POINT_BASE_URL + "/district";
+    public static END_POINT_COMPANY_DISTRICTS = Utils.END_POINT_DISTRICTS + "/%s";
 
     // PRODUCTS
     public static END_POINT_PRODUCTS = Utils.END_POINT_BASE_URL + "/product";

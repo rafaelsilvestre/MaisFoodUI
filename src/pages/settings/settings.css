@@ -70,3 +70,11 @@ h2.section-separator{
     line-height: 25px;
     text-align: center;
 }
+.be-loading .be-spinner {
+    position: absolute !important;
+    margin-top: 0 !important;
+}
+.multiselect-dropdown[_ngcontent-c5] .dropdown-btn[_ngcontent-c5] .selected-item[_ngcontent-c5] {
+    border: 1px solid #9b3b42 !important;
+    background: #9b3b42 !important;
+}

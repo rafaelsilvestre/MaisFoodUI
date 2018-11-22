@@ -57,3 +57,72 @@
     color: #3c3c41;
     font-size: 16px;
 }
+
+.be-loading {
+    position: relative;
+}
+.be-loading:after {
+    position: absolute;
+    display: block;
+    visibility: hidden;
+    opacity: 0;
+    content: "";
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.7);
+    transition: all 0.2s ease;
+    z-index: 2;
+}
+.be-loading.be-loading-active:after {
+    visibility: visible;
+    opacity: 1;
+}
+.be-loading .be-spinner {
+    display: none;
+}
+.be-loading.be-loading-active .be-spinner {
+    display: block;
+}
+.be-loading .be-spinner {
+    position: fixed;
+    top: 50%;
+    right: 50%;
+    margin-top: -20px;
+    margin-right: -20px;
+    z-index: 3;
+}
+.be-loading .be-spinner svg {
+    animation: be-spinner-rotation 1.4s linear infinite;
+    stroke: #000000;
+}
+
+.be-loading .be-spinner svg .circle {
+    stroke-dasharray: 187;
+    stroke-dashoffset: 0;
+    transform-origin: center;
+    animation: be-spinner-turn 1.4s ease-in-out infinite;
+}
+
+@keyframes be-spinner-rotation {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(270deg);
+    }
+}
+@keyframes be-spinner-turn {
+    0% {
+        stroke-dashoffset: 187;
+    }
+    50% {
+        stroke-dashoffset: 46.75;
+        transform: rotate(135deg);
+    }
+    100% {
+        stroke-dashoffset: 187;
+        transform: rotate(450deg);
+    }
+}

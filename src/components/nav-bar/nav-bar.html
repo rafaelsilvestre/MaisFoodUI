@@ -12,12 +12,15 @@
 
         <div class="collapse navbar-collapse" id="navbar-collapse">
             <!-- SYSTEM ADMINS NAVIGATION -->
-            <ul class="nav navbar-nav navbar-right" *ngIf="userLogged && userLogged.permissions && userLogged.permissions[0] == 'ADMIN'">
+            <ul class="nav navbar-nav navbar-left" *ngIf="userLogged && userLogged.permissions && userLogged.permissions[0] == 'ADMIN'">
                 <li [routerLink]="['/dashboard']" routerLinkActive="active"><a href="javascript:void(0);">Dashboard</a></li>
-
-                <li [routerLink]="['/filters']" routerLinkActive="active"><a href="javascript:void(0);">Filtros</a></li>
                 <li [routerLink]="['/companies']" routerLinkActive="active"><a href="javascript:void(0);">Estabelecimentos</a></li>
                 <li [routerLink]="['/users']" routerLinkActive="active"><a href="javascript:void(0);">Usuários</a></li>
+            </ul>
+
+            <ul class="nav navbar-nav navbar-right" *ngIf="userLogged && userLogged.permissions && userLogged.permissions[0] == 'ADMIN'">
+                <li [routerLink]="['/filters']" routerLinkActive="active"><a href="javascript:void(0);">Filtros</a></li>
+                <li [routerLink]="['/districts']" routerLinkActive="active"><a href="javascript:void(0);">Bairros</a></li>
 
                 <li class="dropdown">
                     <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">

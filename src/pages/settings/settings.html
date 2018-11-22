@@ -33,6 +33,42 @@
 
     <div class="row">
         <div class="col-md-12">
+            <div class="panel panel-default be-loading" [ngClass]="{'be-loading-active': isLoadingDistrict}">
+                <div class="panel-title">
+                    <div class="row">
+                        <div class="col-sm-5">
+                            <h2>Bairros</h2>
+                        </div>
+                        <div class="col-sm-7"></div>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <p>Selecione abaixo os bairros que deseja atender...</p>
+                    <div class="form-group">
+                        <ng-multiselect-dropdown
+                            [placeholder]="'Selecione um bairro'"
+                            [data]="dropdownList"
+                            [(ngModel)]="selectedItems"
+                            [settings]="dropdownSettings"
+                            (onSelect)="onItemSelect($event)"
+                            (onDeSelect)="onItemDeSelect($event)"
+                        >
+                        </ng-multiselect-dropdown>
+                    </div>
+                </div>
+
+                <div class="be-spinner">
+                    <svg width="20px" height="20px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
+                        <circle fill="none" stroke-width="4" stroke-linecap="round" cx="33" cy="33" r="30"
+                                class="circle"></circle>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
             <div class="panel panel-default">
                 <div class="panel-title">
                     <div class="row">
@@ -145,27 +181,27 @@
                                     </td>
                                     <td>
                                         <fieldset [disabled]="workedDaysFormGroup.get('3')['controls']['enabled'].value">
-                                            <input type="text" mask [maskPatterns]="hourMask" [maxlength]="5" [formControl]="workedDaysFormGroup.get['3']['controls']['end']" (focusout)="verifyField($event)" placeholder="hh:mm" class="form-control">
+                                            <input type="text" mask [maskPatterns]="hourMask" [maxlength]="5" [formControl]="workedDaysFormGroup.get('3')['controls']['end']" (focusout)="verifyField($event)" placeholder="hh:mm" class="form-control">
                                         </fieldset>
                                     </td>
                                     <td>
                                         <fieldset [disabled]="workedDaysFormGroup.get('4')['controls']['enabled'].value">
-                                            <input type="text" mask [maskPatterns]="hourMask" [maxlength]="5" [formControl]="workedDaysFormGroup.get['4']['controls']['end']" (focusout)="verifyField($event)" placeholder="hh:mm" class="form-control">
+                                            <input type="text" mask [maskPatterns]="hourMask" [maxlength]="5" [formControl]="workedDaysFormGroup.get('4')['controls']['end']" (focusout)="verifyField($event)" placeholder="hh:mm" class="form-control">
                                         </fieldset>
                                     </td>
                                     <td>
                                         <fieldset [disabled]="workedDaysFormGroup.get('5')['controls']['enabled'].value">
-                                            <input type="text" mask [maskPatterns]="hourMask" [maxlength]="5" [formControl]="workedDaysFormGroup.get['5']['controls']['end']" (focusout)="verifyField($event)" placeholder="hh:mm" class="form-control">
+                                            <input type="text" mask [maskPatterns]="hourMask" [maxlength]="5" [formControl]="workedDaysFormGroup.get('5')['controls']['end']" (focusout)="verifyField($event)" placeholder="hh:mm" class="form-control">
                                         </fieldset>
                                     </td>
                                     <td>
                                         <fieldset [disabled]="workedDaysFormGroup.get('6')['controls']['enabled'].value">
-                                            <input type="text" mask [maskPatterns]="hourMask" [maxlength]="5" [formControl]="workedDaysFormGroup.get['6']['controls']['end']" (focusout)="verifyField($event)" placeholder="hh:mm" class="form-control">
+                                            <input type="text" mask [maskPatterns]="hourMask" [maxlength]="5" [formControl]="workedDaysFormGroup.get('6')['controls']['end']" (focusout)="verifyField($event)" placeholder="hh:mm" class="form-control">
                                         </fieldset>
                                     </td>
                                     <td>
                                         <fieldset [disabled]="workedDaysFormGroup.get('0')['controls']['enabled'].value">
-                                            <input type="text" mask [maskPatterns]="hourMask" [maxlength]="5" [formControl]="workedDaysFormGroup.get['0']['controls']['end']" (focusout)="verifyField($event)" placeholder="hh:mm" class="form-control">
+                                            <input type="text" mask [maskPatterns]="hourMask" [maxlength]="5" [formControl]="workedDaysFormGroup.get('0')['controls']['end']" (focusout)="verifyField($event)" placeholder="hh:mm" class="form-control">
                                         </fieldset>
                                     </td>
                                 </tr>

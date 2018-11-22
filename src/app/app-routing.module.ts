@@ -19,6 +19,7 @@ import { MyOrdersPage } from '../pages/my-orders/my-orders';
 import { CreateCategoryPage } from '../pages/create-category/create-category';
 import { EditProductPage } from '../pages/edit-product/edit-product';
 import { EditCompanyPage } from '../pages/edit-company/edit-company';
+import { DistrictsPage } from '../pages/districts/districts'
 
 import { AuthGuard } from '../providers/guards/auth-guard';
 
@@ -52,6 +53,9 @@ const appRoutes: Routes = [
 
     // MY ORDERS
     { path: 'my-orders', component: MyOrdersPage, canActivate: [AuthGuard] },
+
+    // DISTRICTS
+    { path: 'districts', component: DistrictsPage, canActivate: [AuthGuard] },
 
     // FILTERS
     { path: 'filters', component: FiltersPage, canActivate: [AuthGuard] },

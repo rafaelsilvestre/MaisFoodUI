@@ -5,6 +5,7 @@ import { CompanyServiceProvider } from '../../providers/services/company-service
 import {MoneyPipe} from '../../pipes/money-mask/money-mask';
 import { TypeDay } from '../../enums/type-day';
 import swal from "sweetalert2";
+import {DistrictServiceProvider} from '../../providers/services/district-service';
 
 @Component({
     selector: 'settings-page',
@@ -19,7 +20,13 @@ export class SettingsPage {
     company: any;
     workedDays: Array<any> = [];
 
-    constructor(private formBuilder: FormBuilder, private companyService: CompanyServiceProvider){
+    companyDistricts = [];
+    dropdownList = [];
+    selectedItems = [];
+    dropdownSettings = {};
+    isLoadingDistrict: boolean = true;
+
+    constructor(private formBuilder: FormBuilder, private companyService: CompanyServiceProvider, private districtService: DistrictServiceProvider){
         this.settingsFormGroup = this.formBuilder.group({
             name: ["", [Validators.required]],
             description: ["", [Validators.required]],
@@ -34,6 +41,16 @@ export class SettingsPage {
                 this.workedDays = workedDays;
                 this.resolveWorkedDays();
             }).catch((error) => console.log("Error", error));
+
+            this.districtService.getAllDistrictsByCompany(company.id).then((companyDistricts) => {
+                this.companyDistricts = companyDistricts;
+                this.selectedItems = companyDistricts;
+            }).catch((error) => console.log("Error", error));
+        }).catch((error) => console.log("Error", error));
+
+        this.districtService.getAllDistricts().then((districts) => {
+            this.dropdownList = districts;
+            this.isLoadingDistrict = false;
         }).catch((error) => console.log("Error", error));
 
         this.workedDaysFormGroup = this.formBuilder.group({
@@ -72,6 +89,49 @@ export class SettingsPage {
                 end: ["", [Validators.required, Validators.minLength(5)]],
                 enabled: [false]
             })
+        });
+    }
+
+    ngOnInit() {
+        this.selectedItems = [];
+
+        this.dropdownSettings = {
+            singleSelection: false,
+            enableCheckAll: false,
+            idField: 'id',
+            textField: 'name',
+            selectAllText: 'Selecionar todos',
+            unSelectAllText: 'Deselecionar todos',
+            itemsShowLimit: 8,
+            allowSearchFilter: true
+        };
+    }
+
+    onItemSelect(item: any) {
+        this.districtService.saveDistrictsByCompany(this.company.id, item).then(() => {
+
+        }).catch((error) => {
+            swal({
+                title: 'Erro ao salvar Bairro!',
+                confirmButtonText:  'Ok',
+                showCancelButton: false,
+                showCloseButton: false
+            });
+            console.log("Error", error);
+        });
+    }
+
+    onItemDeSelect(item: any) {
+        this.districtService.deleteDistrictsByCompany(this.company.id, item).then(() => {
+
+        }).catch((error) => {
+            swal({
+                title: 'Erro ao remover Bairro!',
+                confirmButtonText:  'Ok',
+                showCancelButton: false,
+                showCloseButton: false
+            });
+            console.log("Error", error);
         });
     }
 
@@ -233,6 +293,10 @@ export class SettingsPage {
             }).catch((error) => console.log("Error", error));
         }).catch((error) => console.log("Error", error));
         console.log(data);
+    }
+
+    saveDistricts(): void {
+        console.log(this.selectedItems);
     }
 
     disableDay(fieldDay: any, isChecked: boolean): void {

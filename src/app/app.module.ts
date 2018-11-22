@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule }   from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -27,6 +28,7 @@ import { MyOrdersPage } from '../pages/my-orders/my-orders';
 import { CreateCategoryPage } from '../pages/create-category/create-category';
 import { EditProductPage } from '../pages/edit-product/edit-product';
 import { EditCompanyPage } from '../pages/edit-company/edit-company';
+import { DistrictsPage } from '../pages/districts/districts';
 
 import { InputMaskDirective } from '../directives/input-mask/input-mask';
 
@@ -39,6 +41,7 @@ import { CompanyServiceProvider } from '../providers/services/company-service';
 import { FilterServiceProvider } from '../providers/services/filter-service';
 import { ProductServiceProvider } from '../providers/services/product-service';
 import { CategoryServiceProvider } from '../providers/services/category-service';
+import { DistrictServiceProvider } from '../providers/services/district-service';
 
 import { AuthInterceptorProvider } from '../providers/interceptors/auth-interceptor';
 
@@ -69,6 +72,7 @@ import { AuthGuard } from '../providers/guards/auth-guard';
         CreateCategoryPage,
         EditProductPage,
         EditCompanyPage,
+        DistrictsPage,
         // Directives
         InputMaskDirective,
         // Pipes
@@ -80,7 +84,8 @@ import { AuthGuard } from '../providers/guards/auth-guard';
         AppRoutingModule,
         FormsModule,
         ReactiveFormsModule,
-        HttpClientModule
+        HttpClientModule,
+        NgMultiSelectDropDownModule.forRoot()
     ],
     providers: [
         // Guards
@@ -92,7 +97,8 @@ import { AuthGuard } from '../providers/guards/auth-guard';
         ProductServiceProvider,
         CategoryServiceProvider,
         AuthInterceptorProvider,
-        FilterServiceProvider
+        FilterServiceProvider,
+        DistrictServiceProvider
     ],
     bootstrap: [AppComponent]
 })
