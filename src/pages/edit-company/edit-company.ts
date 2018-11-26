@@ -22,8 +22,8 @@ export class EditCompanyPage {
 
     filters: Array<Filter> = [];
     filtersChecked: Array<number> = [];
-    filterPrimaryColumn: Array<Filter> = [];
-    filterSecondColumn: Array<Filter> = [];
+    filterPrimaryColumn: Array<any> = [];
+    filterSecondColumn: Array<any> = [];
 
     constructor(private formBuilder: FormBuilder, private companyService: CompanyServiceProvider,
                 private router: Router, private filterService: FilterServiceProvider,
@@ -40,23 +40,40 @@ export class EditCompanyPage {
             if (params.hasOwnProperty("id")) {
                 this.companyService.getCompanyById( params["id"]).then((company) => {
                     this.company = company;
+
+                    let filt = [];
+                    if(company.filters.length > 0){
+                        for(let i = 0; i < company.filters.length; i++){
+                            if(company.filters[i] && company.filters[i].filter.id){
+                                filt.push(company.filters[i].filter.id);
+                            }
+                        }
+                    }
+
+                    this.filterService.getAllFilters().then((filters: any) => {
+                        this.filters = filters;
+                        filters.forEach((filter, i) => {
+                            if(filt.indexOf(filters[i].id) > -1){
+                                filters[i].checked = true;
+                                this.checkedFilter(filters[i], true);
+                            }else{
+                                filters[i].checked = false;
+                            }
+
+                            if(i < Math.round(filters.length / 2)){
+                                this.filterPrimaryColumn.push(filters[i]);
+                            }else{
+                                this.filterSecondColumn.push(filters[i]);
+                            }
+                        });
+                    }).catch((error) => {
+                        if(error && error.error && error.error.message){
+                            console.info("Error", error.error.message);
+                        }
+                    });
+
                     this.resolveCompanyData();
                 }).catch((error) => console.log('Error', error));
-            }
-        });
-
-        this.filterService.getAllFilters().then((filters) => {
-            this.filters = filters;
-            filters.forEach((filter, i) => {
-                if(i < Math.round(filters.length / 2)){
-                    this.filterPrimaryColumn.push(filters[i]);
-                }else{
-                    this.filterSecondColumn.push(filters[i]);
-                }
-            });
-        }).catch((error) => {
-            if(error && error.error && error.error.message){
-                console.info("Error", error.error.message);
             }
         });
     }
@@ -69,7 +86,7 @@ export class EditCompanyPage {
 
     resolveCompanyData(): void {
         this.formGroup.controls['name'].setValue(this.company && this.company.name ? this.company.name : '');
-        this.formGroup.controls['description'].setValue(this.company && this.company.description ? this.company.description : '')
+        this.formGroup.controls['description'].setValue(this.company && this.company.description ? this.company.description : '');
         this.formGroup.controls['minimum_value'].setValue(this.company && this.company.minimumValue ? new MoneyPipe().transform(this.company.minimumValue) : '');
 
         if(this.company && this.company.image){
@@ -86,14 +103,21 @@ export class EditCompanyPage {
 
         this.filtersChecked.forEach((filterId) => {
             let i = this.filters.map((e) => { return e.id; }).indexOf(filterId);
-            formData.categories.push(this.filters[i]);
+            formData.categories.push({
+                id: this.filters[i].id,
+                name: this.filters[i].name
+            });
         });
 
-        let data = {
+        let data: any = {
             companyName: formData.name,
             description: formData.description,
-            minimumValue: Number(formData.minimum_value),
+            minimumValue: Number(formData.minimum_value)
         };
+
+        if(formData.categories.length > 0){
+            data.categories = formData.categories;
+        }
 
         this.companyService.updateCompany(this.company.id, data).then((result) => {
             if(result.id != null){

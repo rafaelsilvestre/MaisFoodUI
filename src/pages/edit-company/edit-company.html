@@ -35,7 +35,7 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="checkbox" *ngFor="let filter of filterPrimaryColumn; let i = index">
-                                                <input type="checkbox" [attr.id]="filter.id" name="filters[]" [attr.value]="filter.name" (change)="checkedFilter(filter, $event.target.checked)">
+                                                <input type="checkbox" [attr.id]="filter.id" name="filters[]" [checked]="filter.checked" [attr.value]="filter.name" (change)="checkedFilter(filter, $event.target.checked)">
                                                 <label class="glyphicon glyphicon-ok" [attr.for]="filter.id">
                                                     <p>{{ filter?.name }}</p>
                                                 </label>
@@ -44,7 +44,7 @@
 
                                         <div class="col-md-6">
                                             <div class="checkbox" *ngFor="let filter of filterSecondColumn; let i = index">
-                                                <input type="checkbox" [attr.id]="filter.id" name="filters[]" [attr.value]="filter.name" (change)="checkedFilter(filter, $event.target.checked)">
+                                                <input type="checkbox" [attr.id]="filter.id" name="filters[]" [checked]="filter.checked" [attr.value]="filter.name" (change)="checkedFilter(filter, $event.target.checked)">
                                                 <label class="glyphicon glyphicon-ok" [attr.for]="filter.id">
                                                     <p>{{ filter?.name }}</p>
                                                 </label>

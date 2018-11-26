@@ -35,6 +35,28 @@ export class FilterServiceProvider{
         });
     }
 
+    updateFilter(data: any): Promise<any>{
+        return new Promise((resolve, reject) => {
+            let filtersPath = Utils.END_POINT_FILTERS;
+            this.http.put(filtersPath, data).subscribe((filters: any) => {
+                resolve();
+            }, (error) => {
+                reject(error);
+            });
+        });
+    }
+
+    getFilter(filterId: number): Promise<any>{
+        return new Promise((resolve, reject) => {
+            let filtersPath = sprintf(Utils.END_POINT_FILTER, filterId);
+            this.http.get(filtersPath).subscribe((filter) => {
+                resolve(filter);
+            }, (error) => {
+                reject(error);
+            });
+        });
+    }
+
     deleteFilter(filterId: number): Promise<any>{
         return new Promise((resolve, reject) => {
             if(filterId == null){

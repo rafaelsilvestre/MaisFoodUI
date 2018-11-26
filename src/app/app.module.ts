@@ -29,6 +29,7 @@ import { CreateCategoryPage } from '../pages/create-category/create-category';
 import { EditProductPage } from '../pages/edit-product/edit-product';
 import { EditCompanyPage } from '../pages/edit-company/edit-company';
 import { DistrictsPage } from '../pages/districts/districts';
+import { EditFilterPage } from '../pages/edit-filter/edit-filter';
 
 import { InputMaskDirective } from '../directives/input-mask/input-mask';
 
@@ -73,6 +74,7 @@ import { AuthGuard } from '../providers/guards/auth-guard';
         EditProductPage,
         EditCompanyPage,
         DistrictsPage,
+        EditFilterPage,
         // Directives
         InputMaskDirective,
         // Pipes

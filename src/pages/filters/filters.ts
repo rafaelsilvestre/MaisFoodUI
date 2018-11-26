@@ -9,10 +9,17 @@ import swal from "sweetalert2";
 })
 export class FiltersPage {
     filters: Array<any> = [];
+    isLoading: boolean = true;
 
     constructor(private filterService: FilterServiceProvider) {
         this.filterService.getAllFilters().then((filters) => {
-            this.filters = filters;
+            setTimeout(() => {
+                this.filters = filters;
+            }, 1000);
+
+            setTimeout(() => {
+                this.isLoading = false;
+            }, 1000);
         }).catch((error) => console.log("Error", error));
     }
 

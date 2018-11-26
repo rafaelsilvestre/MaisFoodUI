@@ -13,6 +13,10 @@
                 <div class="panel-body">
                     <form [formGroup]="settingsFormGroup">
                         <div class="form-group">
+                            <input type="file" id="file" formControlName="file" (change)="uploadFile($event)">
+                            <label class="image" #image for="file"></label>
+                        </div>
+                        <div class="form-group">
                             <label for="name">Nome</label>
                             <input type="email" class="form-control" id="name" placeholder="Nome" formControlName="name">
                         </div>

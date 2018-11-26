@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, ElementRef, ViewChild} from '@angular/core';
 import {FormArray, FormBuilder, FormGroup, Validators} from '@angular/forms';
 import Utils from '../../utils/utils';
 import { CompanyServiceProvider } from '../../providers/services/company-service';
@@ -13,6 +13,8 @@ import {DistrictServiceProvider} from '../../providers/services/district-service
     styleUrls: ['./settings.css']
 })
 export class SettingsPage {
+    @ViewChild('image') companyImage: ElementRef;
+    fileImage: any = null;
     settingsFormGroup: FormGroup;
     workedDaysFormGroup: FormGroup;
     moneyMask: any = Utils.getMoneyMask();
@@ -30,7 +32,8 @@ export class SettingsPage {
         this.settingsFormGroup = this.formBuilder.group({
             name: ["", [Validators.required]],
             description: ["", [Validators.required]],
-            minimumValue: ["", Validators.required]
+            minimumValue: ["", Validators.required],
+            file: ['', [Validators.required]]
         });
 
         this.companyService.getCompanyByUserLogged().then((company) => {
@@ -141,6 +144,12 @@ export class SettingsPage {
         this.settingsFormGroup.controls['name'].setValue(this.company.name);
         this.settingsFormGroup.controls['description'].setValue(this.company.description);
         this.settingsFormGroup.controls['minimumValue'].setValue(new MoneyPipe().transform(this.company.minimumValue));
+
+        if(this.company && this.company.image){
+            this.companyImage.nativeElement.style.backgroundImage = "url(" + this.company.image + ")";
+            this.settingsFormGroup.controls['file'].setValidators([]);
+            this.settingsFormGroup.controls['file'].updateValueAndValidity();
+        }
     }
 
     resolveWorkedDays(): void {
@@ -284,6 +293,11 @@ export class SettingsPage {
         data.companyName = data.name;
         this.companyService.getCompanyByUserLogged().then((company) => {
             this.companyService.updateCompany(company.id, data).then(() => {
+                if(this.fileImage != null){
+                    this.companyService.saveImageCompany(this.fileImage, company.id).then(() => {
+                        // sucessfully
+                    }).catch((error) => console.log('Error', error));
+                }
                 swal({
                     title: 'Dados salvos com sucesso!',
                     confirmButtonText:  'Ok',
@@ -295,21 +309,32 @@ export class SettingsPage {
         console.log(data);
     }
 
-    saveDistricts(): void {
-        console.log(this.selectedItems);
-    }
+    disableDay(fieldDay: any, isChecked: boolean): void { }
 
-    disableDay(fieldDay: any, isChecked: boolean): void {
-        // if(isChecked){
-        //     fieldDay.controls['start'].disable();
-        //     fieldDay.controls['end'].disable();
-        // }else{
-        //     fieldDay.controls['start'].enable();
-        //     fieldDay.controls['end'].enable();
-        // }
-    }
+    uploadFile($event): void {
+        let image: any = new Image();
+        let file: File = $event.target.files[0];
+        let myReader: FileReader = new FileReader();
 
-    get formData() {
-        return <FormArray>this.workedDaysFormGroup.get('1');
+        myReader.onloadend = (loadEvent: any) => {
+            image.src = loadEvent.target.result;
+            this.fileImage = file;
+            this.companyImage.nativeElement.style.backgroundImage = "url(" + image.src + ")";
+        };
+
+        if(file != null) {
+            let validImageTypes = ["image/jpeg", "image/png"];
+            if(validImageTypes.indexOf(file.type) < 0) {
+                swal({
+                    title: 'Formato do arquivo enviado não é válido!',
+                    confirmButtonText:  'Ok',
+                    showCancelButton: false,
+                    showCloseButton: false
+                });
+                return;
+            } else {
+                myReader.readAsDataURL(file);
+            }
+        }
     }
 }

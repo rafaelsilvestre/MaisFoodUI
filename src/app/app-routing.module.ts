@@ -20,6 +20,7 @@ import { CreateCategoryPage } from '../pages/create-category/create-category';
 import { EditProductPage } from '../pages/edit-product/edit-product';
 import { EditCompanyPage } from '../pages/edit-company/edit-company';
 import { DistrictsPage } from '../pages/districts/districts'
+import { EditFilterPage } from '../pages/edit-filter/edit-filter';
 
 import { AuthGuard } from '../providers/guards/auth-guard';
 
@@ -59,7 +60,9 @@ const appRoutes: Routes = [
 
     // FILTERS
     { path: 'filters', component: FiltersPage, canActivate: [AuthGuard] },
-    { path: 'filters/create', component: CreateFilterPage, canActivate: [AuthGuard] }
+    { path: 'filters/create', component: CreateFilterPage, canActivate: [AuthGuard] },
+    { path: 'filters/edit/:id', component: EditFilterPage, canActivate: [AuthGuard] }
+
 ];
 
 @NgModule({

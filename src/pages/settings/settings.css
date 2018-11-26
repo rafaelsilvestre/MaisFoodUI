@@ -78,3 +78,18 @@ h2.section-separator{
     border: 1px solid #9b3b42 !important;
     background: #9b3b42 !important;
 }
+#file{
+    display: none;
+}
+.image{
+    width: 120px;
+    height: 120px;
+    display: block;
+    margin: 0px auto;
+    background: url(../../assets/images/no-image.png);
+    background-size: cover;
+    background-position: center;
+    border-radius: 50%;
+    border: 4px solid #9b3b42;
+    cursor: pointer;
+}
