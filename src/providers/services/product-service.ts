@@ -70,6 +70,9 @@ export class ProductServiceProvider{
 
     saveImageProduct(file: any, productId: number): Promise<any> {
         return new Promise((resolve, reject) => {
+            if(file == null)
+                return;
+
             let companiesPath = sprintf(Utils.END_POINT_PRODUCT_IMAGE, productId);
 
             let formData: FormData = new FormData();

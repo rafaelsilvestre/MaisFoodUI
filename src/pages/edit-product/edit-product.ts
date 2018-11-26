@@ -42,7 +42,8 @@ export class EditProductPage {
             name: ['', [Validators.required]],
             description: ['', [Validators.required]],
             category: ['', Validators.required],
-            price: ['', [Validators.required]]
+            price: ['', [Validators.required]],
+            file: ['', [Validators.required]]
         });
     }
 
@@ -53,11 +54,18 @@ export class EditProductPage {
         this.formGroup.controls['description'].setValue(this.product.description);
         this.formGroup.controls['category'].setValue(this.product.category.id);
         this.formGroup.controls['price'].setValue(new MoneyPipe().transform(this.product.price));
+
+        if(this.product && this.product.image){
+            this.companyImage.nativeElement.style.backgroundImage = "url(" + this.product.image + ")";
+            this.formGroup.controls['file'].setValidators([]);
+            this.formGroup.controls['file'].updateValueAndValidity();
+        }
     }
 
-    updateProduct(data): void{
+    updateProduct(data): void {
         if(isNaN(data.price))
         data.price = data.price.toString().replace('R$ ', '').replace(',', '.');
+        data.price = Number(data.price);
 
         this.productService.updateProduct(this.product.id, data).then((result) => {
             this.productService.saveImageProduct(this.fileImage, this.product.id).then(() => {
