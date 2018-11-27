@@ -14,6 +14,7 @@
                     <tr>
                         <th>#</th>
                         <th>Nome</th>
+                        <th>Endereço</th>
                         <th>Status</th>
                         <th>Produtos</th>
                         <th>Valor</th>
@@ -23,6 +24,11 @@
                     <tr *ngFor="let order of orders; let i = index">
                         <td>{{ order.id }}</td>
                         <td>{{ order?.user?.name }}<br><small>{{ order.user.email }}</small></td>
+                        <td>
+                            {{ order?.address?.state + ', ' + order?.address?.city}}<br>
+                            {{ order?.address?.district + ' - ' + order.address.street + ' Nº ' + order.address.number }}<br>
+                            {{ order?.address?.complement }}
+                        </td>
                         <td>{{ order?.status }}</td>
                         <td>
                             <p *ngFor="let product of order.orderItems">{{ product?.product?.name }} <small>{{ ' x' + product.quantity }}</small></p>
