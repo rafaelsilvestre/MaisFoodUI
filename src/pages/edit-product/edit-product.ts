@@ -8,6 +8,10 @@ import {CategoryServiceProvider} from '../../providers/services/category-service
 import {MoneyPipe} from '../../pipes/money-mask/money-mask';
 import swal from "sweetalert2";
 
+export interface Category {
+    id: number;
+}
+
 @Component({
     selector: 'edit-product-page',
     templateUrl: './edit-product.html',
@@ -62,15 +66,22 @@ export class EditProductPage {
         }
     }
 
-    updateProduct(data): void {
+    updateProduct(data: any): void {
         if(isNaN(data.price))
         data.price = data.price.toString().replace('R$ ', '').replace(',', '.');
         data.price = Number(data.price);
 
+        let category: Category = {
+            id: data.category
+        };
+        data.category = category;
+
         this.productService.updateProduct(this.product.id, data).then((result) => {
-            this.productService.saveImageProduct(this.fileImage, this.product.id).then(() => {
-                this.router.navigate(['/products']);
-            }).catch((error) => console.log("Error", error));
+            if(result && result.id && this.fileImage != null){
+                this.productService.saveImageProduct(this.fileImage, this.product.id).then(() => {
+                    this.router.navigate(['/products']);
+                }).catch((error) => console.log("Error", error));
+            }
         }).catch((error) => console.log("Error", error));
     }
 

@@ -43,6 +43,7 @@ import { FilterServiceProvider } from '../providers/services/filter-service';
 import { ProductServiceProvider } from '../providers/services/product-service';
 import { CategoryServiceProvider } from '../providers/services/category-service';
 import { DistrictServiceProvider } from '../providers/services/district-service';
+import { OrderServiceProvider } from '../providers/services/order-service';
 
 import { AuthInterceptorProvider } from '../providers/interceptors/auth-interceptor';
 
@@ -100,7 +101,8 @@ import { AuthGuard } from '../providers/guards/auth-guard';
         CategoryServiceProvider,
         AuthInterceptorProvider,
         FilterServiceProvider,
-        DistrictServiceProvider
+        DistrictServiceProvider,
+        OrderServiceProvider
     ],
     bootstrap: [AppComponent]
 })

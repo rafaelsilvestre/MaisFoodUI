@@ -13,6 +13,9 @@ export default class Utils {
     public static END_POINT_FILTERS = Utils.END_POINT_BASE_URL + "/filter";
     public static END_POINT_FILTER = Utils.END_POINT_FILTERS + "/%s";
 
+    // FILTERS
+    public static END_POINT_ORDERS = Utils.END_POINT_BASE_URL + "/order/all";
+
     // COMPANIES
     public static END_POINT_COMPANIES = Utils.END_POINT_BASE_URL + "/company";
     public static END_POINT_COMPANY = Utils.END_POINT_COMPANIES + "/%s";
